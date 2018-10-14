@@ -28,9 +28,6 @@ namespace DoctorClient
             this.doctor = doctor;
             this.form = form;
             this.Index = 0;
-            this.boolStartUpTest = false;
-            this.boolStartWarmUp = false;
-            this.boolStartTrainingsession = false;
             Next();
         }
 
@@ -39,15 +36,12 @@ namespace DoctorClient
             switch (this.Index)
             {
                 case 0:
-                    if(boolStartUpTest == false)
                     StartUpTest();
                     break;
                 case 1:
-                    if(boolStartWarmUp == false)
                     StartWarmUp();
                     break;
                 case 2:
-                    if(boolStartTrainingsession == false)
                     StartTrainingSession();
                     break;
                 case 3:
@@ -58,7 +52,6 @@ namespace DoctorClient
 
         public void StartUpTest()
         {
-            this.boolStartUpTest = true;
             form.UpdateText.Text = "Over 5 seconden begint de warming-up";
             doctor.BroadcastPersonalMessage("Over 5 seconden begint de warming-up", machineName);
             doctor.SendChangeTime("0005", machineName);
@@ -66,7 +59,6 @@ namespace DoctorClient
 
         public void StartWarmUp()
         {
-            this.boolStartWarmUp = true;
             form.Invoke(new MethodInvoker(delegate
             {
                 form.UpdateText.Text = "Fiets 2 minuten lang op een rustig tempo";
@@ -79,7 +71,6 @@ namespace DoctorClient
 
         public void StartTrainingSession()
         {
-            this.boolStartTrainingsession = true;
             form.Invoke(new MethodInvoker(delegate
             {
                 form.UpdateText.Text = "De trainingsessie is begonnen, fiets met een snelheid van 20 km/u!";
@@ -101,6 +92,13 @@ namespace DoctorClient
             
             timer = new Timer(5000);
             timer.Elapsed += DecreasePower;
+            timer.Start();
+        }
+
+        public void StopExercise()
+        {
+            form.UpdateText.Text = "De Avans Astrand test is afgelopen";
+            doctor.BroadcastPersonalMessage("De Avans Astrand test is afgelopen", machineName);
         }
 
         public void DecreasePower(Object source, ElapsedEventArgs e)

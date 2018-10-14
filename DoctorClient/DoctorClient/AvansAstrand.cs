@@ -20,6 +20,7 @@ namespace DoctorClient
         public string time;
         private Exercise exercise;
         private Timer timer;
+        private bool hasBeen0;
 
         public AvansAstrand(ClientDoctor doctor, string name)
         {
@@ -29,16 +30,22 @@ namespace DoctorClient
             this.infoScreen = InfoBox;
             this.UpdateText = UpdateLabel;
             this.exercise = new Exercise(this, doctor, name);
-            this.timer = new Timer(1000);
-            this.timer.Elapsed += CheckTime;
-            this.timer.AutoReset = true;
-            this.timer.Enabled = true;
+            this.hasBeen0 = false;
         }
 
-        public void CheckTime(Object source, ElapsedEventArgs e)
+        public void CheckTime()
         {
             Console.WriteLine("TIME: " + time);
-            if(time == "00:00" || time == "00:10" || time == "00:20" || time == "01:20")
+            if (!hasBeen0)
+            {
+                if (time == "00:00")
+                {
+                    exercise.Index++;
+                    exercise.Next();
+                    hasBeen0 = true;
+                }
+            }
+            if(time == "00:10" || time == "00:20" || time == "01:20")
             {
                 exercise.Index++;
                 exercise.Next();

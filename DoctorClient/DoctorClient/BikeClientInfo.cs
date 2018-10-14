@@ -80,6 +80,7 @@ namespace DoctorClient
                             {
                                 aa.infoScreen.Text = bikeData.data.time;
                                 aa.time = bikeData.data.time;
+                                aa.CheckTime();
                             }
                         }));
                     }
