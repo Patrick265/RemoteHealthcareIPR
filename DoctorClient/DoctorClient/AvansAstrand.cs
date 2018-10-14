@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
 using Timer = System.Timers.Timer;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DoctorClient
 {
@@ -16,6 +17,7 @@ namespace DoctorClient
     {
         public TextBox infoScreen;
         public Label UpdateText;
+        public Chart Chart;
         private ClientDoctor doctor;
         public string time;
         private Exercise exercise;
@@ -27,6 +29,7 @@ namespace DoctorClient
             InitializeComponent();
             this.time = "";
             this.doctor = doctor;
+            this.Chart = DataChart;
             this.infoScreen = InfoBox;
             this.UpdateText = UpdateLabel;
             this.exercise = new Exercise(this, doctor, name);
