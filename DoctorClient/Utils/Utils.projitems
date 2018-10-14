@@ -9,5 +9,14 @@
     <Import_RootNamespace>Utils</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Connection\Client.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Connection\ConnectionUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Connection\GlobalData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Credentials\LoginStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Credentials\StringCipher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JSON\JsonConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Doctor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Patient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\TrainingSession.cs" />
   </ItemGroup>
 </Project>
