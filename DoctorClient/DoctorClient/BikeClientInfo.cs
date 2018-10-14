@@ -212,6 +212,10 @@ namespace DoctorClient
             }
         }
 
-       
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AvansAstrand aa = new AvansAstrand();
+            aa.Show();
+        }
     }
 }

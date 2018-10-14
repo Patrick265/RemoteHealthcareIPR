@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AvansAstrand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AvansAstrand.Designer.cs">
+      <DependentUpon>AvansAstrand.cs</DependentUpon>
+    </Compile>
     <Compile Include="BikeClientInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -64,6 +70,7 @@
       <DependentUpon>ChangePatient.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientDoctor.cs" />
+    <Compile Include="Exercise.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AvansAstrand.resx">
+      <DependentUpon>AvansAstrand.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BikeClientInfo.resx">
       <DependentUpon>BikeClientInfo.cs</DependentUpon>
     </EmbeddedResource>
