@@ -457,11 +457,10 @@ public class JsonConnector
 
     public dynamic SendChangePower(string name, int requestedPower)
     {
-        RootObjectSendChange sendChange = new RootObjectSendChange();
-        sendChange.data = new DataSendChange();
-        sendChange.id = "Change";
+        dynamic sendChange = new JObject();
+        sendChange.id = "ChangePower";
         sendChange.name = name;
-        sendChange.data.requestedPower = requestedPower;
+        sendChange.requestedPower = requestedPower;
         return sendChange;
     }
     public dynamic Connect(Boolean doctor)
@@ -604,5 +603,14 @@ public class JsonConnector
         hj.id = "HistoryData";
         hj.json = json;
         return hj;
+    }
+
+    public dynamic SendChangeTime(string time, string name)
+    {
+        dynamic sendChange = new JObject();
+        sendChange.id = "ChangeTime";
+        sendChange.name = name;
+        sendChange.time = time;
+        return sendChange;
     }
 }

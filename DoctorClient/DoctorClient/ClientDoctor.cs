@@ -160,7 +160,6 @@ namespace DoctorClient
                         }
                         break;
                     case "Bike":
-                        Console.WriteLine(jsonReceive);
                         JObject data = (JObject)jsonReceive;
                         bikeInfoData = data.ToObject<RootObjectSendBikeInfo>();
                         break;
@@ -306,6 +305,18 @@ namespace DoctorClient
             SendToServer(json);
         }
 
+        public void SendChangePower(int power, string name)
+        {
+            dynamic json = jc.getJson(jc.SendChangePower(name, power));
+            SendToServer(json);
+        }
+
+        public void SendChangeTime(string time, string name)
+        {
+            dynamic json = jc.getJson(jc.SendChangeTime(time, name));
+            SendToServer(json);
+        }
+
         public void SendLoginInfo(String username, String password)
         {
 
@@ -359,11 +370,8 @@ namespace DoctorClient
         public void SetHistoryData(dynamic jsonReceive)
         {
             string json = jsonReceive.json;
-            //json = json.Remove(0, 1);
-            //json = json.Remove(json.Length-1, 1);
             patient = JsonConvert.DeserializeObject<Patient>(json);
             form.bc.patient = patient;
-            //form.bc.f2.setList(patient);
         }
 
 

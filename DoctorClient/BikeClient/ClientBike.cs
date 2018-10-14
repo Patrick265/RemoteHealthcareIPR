@@ -53,6 +53,15 @@ namespace BikeClient
                         string time = jsonRecieve.data.time;
                         SimulatorGUI.ChangeBikeValues(distance, requestedPower, time);
                         break;
+                    case "ChangeTime":
+                        Console.WriteLine("Changed time");
+                        string timeChange = jsonRecieve.time;
+                        SimulatorGUI.ChangeTime(timeChange);
+                        break;
+                    case "ChangePower":
+                        int rqPower = jsonRecieve.requestedPower;
+                        SimulatorGUI.ChangePower(rqPower);
+                        break;
                     case "Message":
                         string message = jsonRecieve.message;
                         Console.WriteLine("Recieved message: " + message);

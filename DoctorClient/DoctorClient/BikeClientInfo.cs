@@ -23,6 +23,7 @@ namespace DoctorClient
         public Form2 f2;
         public Patient patient { get; set; }
         public string[] chartItems = {"Distance", "Speed", "Requested Power", "Energy", "Power", "Pulse", "RPM"};
+        public AvansAstrand aa;
 
         public BikeClientInfo(string machineName, TabControl tabControl, ClientDoctor clientDoctor, string patientName, string date, Patient patient)
      
@@ -69,6 +70,20 @@ namespace DoctorClient
                         chart1.Series["Speed"].Points.Add(Convert.ToDouble(bikeData.data.speed));
                     }
                 }));
+                if (aa != null)
+                {
+                    if (bikeData.name == bikeName)
+                    {
+                        aa.Invoke(new MethodInvoker(delegate
+                        {
+                            if (aa.infoScreen != null)
+                            {
+                                aa.infoScreen.Text = bikeData.data.time;
+                                aa.time = bikeData.data.time;
+                            }
+                        }));
+                    }
+                }
             }
             catch
             {
@@ -214,7 +229,7 @@ namespace DoctorClient
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AvansAstrand aa = new AvansAstrand();
+            aa = new AvansAstrand(doctor, bikeName);
             aa.Show();
         }
     }

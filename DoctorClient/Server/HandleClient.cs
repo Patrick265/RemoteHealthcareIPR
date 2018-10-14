@@ -90,6 +90,12 @@ namespace Server
 						case "Change":
 							SendChange(jsonReceive);
 							break;
+                        case "ChangeTime":
+                            SendChange(jsonReceive);
+                            break;
+                        case "ChangePower":
+                            SendChange(jsonReceive);
+                            break;
 						case "PersonalMessage":
 							string name = jsonReceive.name;
 							NetworkStream streamP = clientList[name].Stream;
@@ -254,7 +260,6 @@ namespace Server
 		{
 			string name = jsonRecieve.name;
 			string json = JsonConvert.SerializeObject(jsonRecieve);
-
 			NetworkStream stream = this.clientList[name].Client.GetStream();
 			if (stream != null)
 			{

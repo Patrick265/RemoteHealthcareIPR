@@ -46,7 +46,7 @@ namespace BikeClient
             Thread.CurrentThread.IsBackground = true;
                 while (commandMode)
                 {
-                    Console.WriteLine(speed / 3600.0);
+                    //Console.WriteLine(speed / 3600.0);
                     distance += speed / 3600.00;
                     Thread.Sleep(1000);
 

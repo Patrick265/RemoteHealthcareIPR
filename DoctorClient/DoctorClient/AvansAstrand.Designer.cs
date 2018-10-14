@@ -28,16 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.InfoBox = new System.Windows.Forms.TextBox();
+            this.UpdateLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // InfoBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(196, 353);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(307, 22);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Test voor avans astrand";
+            this.InfoBox.Location = new System.Drawing.Point(189, 368);
+            this.InfoBox.Name = "InfoBox";
+            this.InfoBox.Size = new System.Drawing.Size(307, 22);
+            this.InfoBox.TabIndex = 0;
+            this.InfoBox.Text = "Test voor avans astrand";
+            // 
+            // UpdateLabel
+            // 
+            this.UpdateLabel.AutoSize = true;
+            this.UpdateLabel.Location = new System.Drawing.Point(318, 303);
+            this.UpdateLabel.Name = "UpdateLabel";
+            this.UpdateLabel.Size = new System.Drawing.Size(46, 17);
+            this.UpdateLabel.TabIndex = 1;
+            this.UpdateLabel.Text = "label1";
             // 
             // AvansAstrand
             // 
@@ -45,7 +55,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.UpdateLabel);
+            this.Controls.Add(this.InfoBox);
             this.Name = "AvansAstrand";
             this.Text = "AvansAstrand";
             this.ResumeLayout(false);
@@ -55,6 +66,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox InfoBox;
+        private System.Windows.Forms.Label UpdateLabel;
     }
 }

@@ -152,6 +152,16 @@ namespace BikeClient
             this.client.Send(this.jsonConnector.SendTunnel(dest, msg));
         }
 
+        public static void ChangeTime(string time)
+        {
+            bicycle.RequestTime(time);
+        }
+
+        public static void ChangePower(int power)
+        {
+            bicycle.RequestPower(power, false);
+        }
+
         private void BtnSendAndReceive_Click(object sender, EventArgs e)
         {
             var msg = new
