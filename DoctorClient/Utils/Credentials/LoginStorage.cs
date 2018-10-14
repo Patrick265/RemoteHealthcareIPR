@@ -14,8 +14,6 @@ namespace Utils.Credentials
 		{
 			this.Storage = new Dictionary<string, string>();
 			this.Storage.Add("Dokter", "Welkom123");
-            this.Storage.Add("Dokter", "Welkom123");
-            this.Storage.Add("Dokter", "Welkom123");
         }
 
 		
