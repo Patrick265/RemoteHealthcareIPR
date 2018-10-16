@@ -24,6 +24,7 @@ namespace DoctorClient
         public Patient patient { get; set; }
         public string[] chartItems = {"Distance", "Speed", "Requested Power", "Energy", "Power", "Pulse", "RPM"};
         public AvansAstrand aa;
+        public int pulse { get; set; }
 
         public BikeClientInfo(string machineName, TabControl tabControl, ClientDoctor clientDoctor, string patientName, string date, Patient patient)
      
@@ -53,6 +54,7 @@ namespace DoctorClient
 
                     if (bikeData.name == bikeName)
                     {
+                        this.pulse = (int)bikeData.data.pulse;
                         txtDistance.Text = bikeData.data.distance.ToString();
                         txtSpeed.Text = bikeData.data.speed.ToString();
                         txtRequestedPower.Text = bikeData.data.requestedPower.ToString();
@@ -230,7 +232,7 @@ namespace DoctorClient
 
         private void button2_Click(object sender, EventArgs e)
         {
-            aa = new AvansAstrand(doctor, bikeName, patient);
+            aa = new AvansAstrand(doctor, bikeName, patient, this);
             aa.Show();
         }
     }
