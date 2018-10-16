@@ -230,7 +230,7 @@ namespace DoctorClient
 
         private void button2_Click(object sender, EventArgs e)
         {
-            aa = new AvansAstrand(doctor, bikeName);
+            aa = new AvansAstrand(doctor, bikeName, patient);
             aa.Show();
         }
     }

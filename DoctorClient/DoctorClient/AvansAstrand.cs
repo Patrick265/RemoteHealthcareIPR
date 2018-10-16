@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Timers;
 using Timer = System.Timers.Timer;
 using System.Windows.Forms.DataVisualization.Charting;
+using Utils.Model;
 
 namespace DoctorClient
 {
@@ -21,10 +22,9 @@ namespace DoctorClient
         private ClientDoctor doctor;
         public string time;
         private Exercise exercise;
-        private Timer timer;
         private bool hasBeen0;
 
-        public AvansAstrand(ClientDoctor doctor, string name)
+        public AvansAstrand(ClientDoctor doctor, string name, Patient p)
         {
             InitializeComponent();
             this.time = "";
@@ -32,7 +32,7 @@ namespace DoctorClient
             this.Chart = DataChart;
             this.infoScreen = InfoBox;
             this.UpdateText = UpdateLabel;
-            this.exercise = new Exercise(this, doctor, name);
+            this.exercise = new Exercise(this, doctor, name, p);
             this.hasBeen0 = false;
         }
 
@@ -48,7 +48,7 @@ namespace DoctorClient
                     hasBeen0 = true;
                 }
             }
-            if(time == "00:10" || time == "00:20" || time == "01:20")
+            if(time == "07:00" || time == "06:00" || time == "02:00")
             {
                 exercise.Index++;
                 exercise.Next();

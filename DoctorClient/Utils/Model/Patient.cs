@@ -11,13 +11,15 @@ namespace Utils.Model
         public int height { get; set; }
 		public string date { get; set; }
         public List<TrainingSession> TrainingSessions { get; set; }
+        public bool male { get; set; }
 
-        public Patient(string name, float weight, int height, string date, List<TrainingSession> trainingSessions)
+        public Patient(string name, float weight, int height, string date, List<TrainingSession> trainingSessions, bool male)
         {
             this.name = name;
             this.weight = weight;
             this.height = height;
             this.date = date;
+            this.male = male;
             TrainingSessions = trainingSessions;
         }
 

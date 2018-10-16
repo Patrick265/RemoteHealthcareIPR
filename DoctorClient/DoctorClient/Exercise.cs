@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
+using Utils.Model;
 
 namespace DoctorClient
 {
@@ -17,13 +18,12 @@ namespace DoctorClient
         public int Index { get; set; }
         private int power;
         private Timer timer;
-        private bool boolStartUpTest;
-        private bool boolStartWarmUp;
-        private bool boolStartTrainingsession;
+        private Patient patient;
 
 
-        public Exercise(AvansAstrand form, ClientDoctor doctor, string name)
+        public Exercise(AvansAstrand form, ClientDoctor doctor, string name, Patient p)
         {
+            this.patient = patient;
             this.machineName = name;
             this.doctor = doctor;
             this.form = form;
@@ -47,6 +47,9 @@ namespace DoctorClient
                 case 3:
                     StartCooldown();
                     break;
+                case 4:
+                    StopExercise();
+                    break;
             }
         }
 
@@ -54,7 +57,7 @@ namespace DoctorClient
         {
             form.UpdateText.Text = "Over 5 seconden begint de warming-up";
             doctor.BroadcastPersonalMessage("Over 5 seconden begint de warming-up", machineName);
-            doctor.SendChangeTime("0005", machineName);
+            doctor.SendChangeTime("0705", machineName);
         }
 
         public void StartWarmUp()
@@ -66,7 +69,7 @@ namespace DoctorClient
             
             doctor.BroadcastPersonalMessage("Fiets 2 minuten lang op een rustig tempo", machineName);
             doctor.SendChangePower(50, machineName);
-            doctor.SendChangeTime("0000", machineName);
+            //doctor.SendChangeTime("0000", machineName);
         }
 
         public void StartTrainingSession()
