@@ -25,6 +25,7 @@ namespace DoctorClient
         public string[] chartItems = {"Distance", "Speed", "Requested Power", "Energy", "Power", "Pulse", "RPM"};
         public AvansAstrand aa;
         public int pulse { get; set; }
+        private Patient AaPatient;
 
         public BikeClientInfo(string machineName, TabControl tabControl, ClientDoctor clientDoctor, string patientName, string date, Patient patient)
      
@@ -40,6 +41,7 @@ namespace DoctorClient
             lblDateOfBirth.Text = date;
             lblBikeInfo.Text = bikeName;
             this.patient = patient;
+            this.AaPatient = patient;
             
         }
 
@@ -232,7 +234,7 @@ namespace DoctorClient
 
         private void button2_Click(object sender, EventArgs e)
         {
-            aa = new AvansAstrand(doctor, bikeName, patient, this);
+            aa = new AvansAstrand(doctor, bikeName, AaPatient, this);
             aa.Show();
         }
     }

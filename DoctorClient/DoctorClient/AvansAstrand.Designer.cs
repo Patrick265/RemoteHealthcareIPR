@@ -34,8 +34,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.UpdateLabel = new System.Windows.Forms.Label();
-            this.DataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.InfoBox = new System.Windows.Forms.TextBox();
+            this.DataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataChart)).BeginInit();
@@ -84,6 +84,17 @@
             this.UpdateLabel.TabIndex = 0;
             this.UpdateLabel.Text = "label1";
             // 
+            // InfoBox
+            // 
+            this.InfoBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InfoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.InfoBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
+            this.InfoBox.Location = new System.Drawing.Point(10, 98);
+            this.InfoBox.Margin = new System.Windows.Forms.Padding(10, 10, 5, 10);
+            this.InfoBox.Name = "InfoBox";
+            this.InfoBox.Size = new System.Drawing.Size(259, 30);
+            this.InfoBox.TabIndex = 1;
+            // 
             // DataChart
             // 
             chartArea1.Name = "ChartArea1";
@@ -119,18 +130,6 @@
             this.DataChart.Size = new System.Drawing.Size(505, 430);
             this.DataChart.TabIndex = 1;
             this.DataChart.Text = "chart1";
-            this.DataChart.Series[0].LegendText = "Data";
-            // 
-            // InfoBox
-            // 
-            this.InfoBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InfoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.InfoBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
-            this.InfoBox.Location = new System.Drawing.Point(10, 98);
-            this.InfoBox.Margin = new System.Windows.Forms.Padding(10, 10, 5, 10);
-            this.InfoBox.Name = "InfoBox";
-            this.InfoBox.Size = new System.Drawing.Size(259, 30);
-            this.InfoBox.TabIndex = 1;
             // 
             // AvansAstrand
             // 

@@ -33,23 +33,23 @@ namespace DoctorClient
             this.Chart = DataChart;
             this.infoScreen = InfoBox;
             this.UpdateText = UpdateLabel;
-            this.exercise = new Exercise(this, doctor, name, p, bikeInfo);
+            Patient patient = p;
+            this.exercise = new Exercise(this, doctor, name, patient, bikeInfo);
             this.hasBeen0 = false;
         }
 
         public void CheckTime()
         {
-            Console.WriteLine("TIME: " + time);
             if (!hasBeen0)
             {
-                if (time == "00:00")
+                if (time == "10:00")
                 {
                     exercise.Index++;
                     exercise.Next();
                     hasBeen0 = true;
                 }
             }
-            if(time == "07:00" || time == "06:00" || time == "04:00" || time == "00:00")
+            if(time == "07:00" || time == "03:50" || time == "00:01")
             {
                 exercise.Index++;
                 exercise.Next();

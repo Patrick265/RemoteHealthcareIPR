@@ -18,10 +18,12 @@ namespace DoctorClient
         public int Index { get; set; }
         private int power;
         private Timer timer;
+        private Timer timer2;
         private Patient patient;
         private int TargetWatt;
         private BikeClientInfo bikeInfo;
         private List<int> PulseValues;
+        private List<int> FirstPulseValues;
 
 
         public Exercise(AvansAstrand form, ClientDoctor doctor, string name, Patient p, BikeClientInfo bikeInfo)
@@ -33,6 +35,7 @@ namespace DoctorClient
             this.form = form;
             this.Index = 0;
             PulseValues = new List<int>();
+            FirstPulseValues = new List<int>();
             GetStartingWatt();
             Next();
         }
@@ -51,13 +54,13 @@ namespace DoctorClient
                     StartTrainingSession();
                     break;
                 case 3:
-                    CheckSteadyState();
+                    //CheckSteadyState();
                     break;
                 case 4:
-                    StartCooldown();
+                    //StartCooldown();
                     break;
                 case 5:
-                    StopExercise();
+                    //StopExercise();
                     break;
             }
         }
@@ -69,7 +72,7 @@ namespace DoctorClient
         {
             form.UpdateText.Text = "Over 5 seconden begint de warming-up";
             doctor.BroadcastPersonalMessage("Over 5 seconden begint de warming-up", machineName);
-            doctor.SendChangeTime("0705", machineName);
+            doctor.SendChangeTime("0005", machineName);
         }
 
         /// <summary>
@@ -85,6 +88,7 @@ namespace DoctorClient
             doctor.BroadcastPersonalMessage("Fiets 2 minuten lang op een rustig tempo", machineName);
             doctor.SendChangePower(50, machineName);
             power = 50;
+            doctor.SendChangeTime("0010", machineName);
         }
 
         /// <summary>
@@ -96,9 +100,12 @@ namespace DoctorClient
             {
                 form.UpdateText.Text = "De trainingsessie is begonnen, fiets met een RPM van 60!";
             }));
-
+            GetFirstPulseValuesEx();
+            doctor.SendChangeTime("0400", machineName);
             doctor.BroadcastPersonalMessage("De trainingsessie is begonnen, fiets met een RPM van 60!", machineName);
-
+            timer = new Timer(60000);
+            timer.Elapsed += GetFirstPulseValues;
+            timer.Start();
             BuildToTargetTimer();
         }
 
@@ -111,24 +118,34 @@ namespace DoctorClient
             timer = new Timer(15000);
             timer.Elapsed += GetPulse;
             timer.Start();
-            while(PulseValues.Count < 8)
-            {
 
-            }
+            
+                
+        }
 
+        public void CheckValues()
+        {
             int min = PulseValues.Min();
             int max = PulseValues.Max();
-            if ((max-min) <= 5)
+            Console.WriteLine("MIN: " + min + " - MAX: " + max);
+            if ((max - min) <= 5)
             {
-                GetAverage();
+                int average = GetAverage();
+                if (average < 90)
+                {
+                    RestartTest();
+                }
                 //If average is below 130 execute the checksteadystate again with a higher watt(update timer)
+                else
+                {
+                    StartCooldown();
+                }
             }
             else
             {
                 //Check if there are invalid values in the pulseValues and filter them out
                 //if after this check there's still no steady state you need to execute another 2 minutes of checksteadystate (update timer)
             }
-                
         }
 
         /// <summary>
@@ -136,6 +153,7 @@ namespace DoctorClient
         /// </summary>
         public void StartCooldown()
         {
+            doctor.SendChangeTime("0100", machineName);
             form.Invoke(new MethodInvoker(delegate
             {
                 form.UpdateText.Text = "De cooldown is begonnen, fiets op een rustig tempo door";
@@ -155,6 +173,7 @@ namespace DoctorClient
         {
             form.UpdateText.Text = "De Avans Astrand test is afgelopen";
             doctor.BroadcastPersonalMessage("De Avans Astrand test is afgelopen", machineName);
+            form.infoScreen.Text = "";
         }
 
 
@@ -165,9 +184,9 @@ namespace DoctorClient
         /// </summary>
         public void BuildToTargetTimer()
         {
-            timer = new Timer(5000);
-            timer.Elapsed += BuildToTarget;
-            timer.Start();
+            timer2 = new Timer(5000);
+            timer2.Elapsed += BuildToTarget;
+            timer2.Start();
         }
 
         /// <summary>
@@ -175,7 +194,17 @@ namespace DoctorClient
         /// </summary>
         public void GetPulse(Object source, ElapsedEventArgs e)
         {
-            PulseValues.Add(bikeInfo.pulse);
+            if (PulseValues.Count < 7)
+            {
+                Console.WriteLine("NEW PULSE: " + bikeInfo.pulse);
+                PulseValues.Add(bikeInfo.pulse);
+            }
+            else
+            {
+                PulseValues.Add(bikeInfo.pulse);
+                timer.Stop();
+                CheckValues();
+            }
         }
 
         /// <summary>
@@ -192,13 +221,14 @@ namespace DoctorClient
             }
             else
             {
-                timer.Stop();
-                if(bikeInfo.pulse < 110)
+                timer2.Stop();
+                if(bikeInfo.pulse < 90)
                 {
                     TargetWatt += 25;
                     BuildToTargetTimer();
                 }
             }
+            Console.WriteLine("NEW POWER: " + power);
         }
 
         public void DecreasePower(Object source, ElapsedEventArgs e)
@@ -213,6 +243,7 @@ namespace DoctorClient
                 power -= 25;
                 doctor.SendChangePower(power, machineName);
             }
+            Console.WriteLine("NEW POWER: " + power);
         }
 
         /// <summary>
@@ -229,10 +260,43 @@ namespace DoctorClient
                 TargetWatt = 110;
             }
         }
-        
-        public void GetAverage()
-        {
 
+        /// <summary>
+        /// Method is called when the test needs to restart with additional Watt, needs to update the timer on the bike
+        /// </summary>
+        public void RestartTest()
+        {
+            TargetWatt += 25;
+            power += 25;
+            doctor.SendChangePower(power, machineName);
+            Console.WriteLine("Test needs to be restarted!!");
+
+        }
+
+        public void GetFirstPulseValues(Object source, ElapsedEventArgs e)
+        {
+            GetFirstPulseValuesEx();
+        }
+
+        public void GetFirstPulseValuesEx()
+        {
+            if (FirstPulseValues.Count < 2)
+            {
+                FirstPulseValues.Add(bikeInfo.pulse);
+                Console.WriteLine("FIRSTPULSEVALUES: " + FirstPulseValues.Count);
+                
+            }
+            else
+            {
+                FirstPulseValues.Add(bikeInfo.pulse);
+                timer.Stop();
+                CheckSteadyState();
+            }
+        }
+        
+        public int GetAverage()
+        {
+            return 100;
         }
 
     }

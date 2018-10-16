@@ -42,6 +42,7 @@ namespace DoctorClient
             listBox2.DataSource = names;
 
             this.patient = patient;
+            Console.WriteLine("PATIENT IN FORM: " + patient.ToString());
         }
 
         public static void getNames()
@@ -115,10 +116,13 @@ namespace DoctorClient
                 name = listBox2.SelectedItem.ToString();
                 string nameOnly = name.Split('-')[0];
                 string date = name.Split('-')[3];
+                Console.WriteLine("PATIENT INDEX IN NAME: " + names.IndexOf(name));
+                //Console.WriteLine("PATIENTNAMES AMOUNT: " + patientNames.Count);
+                Patient p = patients.ElementAt(names.IndexOf(name));
                 names.Remove(name);
                 doctor.SendCombo(machineNameV, nameOnly, date);
                 
-                bc = new BikeClientInfo(machineNameV, tabControl1, doctor, nameOnly, date, patient);
+                bc = new BikeClientInfo(machineNameV, tabControl1, doctor, nameOnly, date, p);
                 doctor.GetOldData(nameOnly);
                 bc.Dock = DockStyle.Fill;
                 TabPage tp = new TabPage();
@@ -155,7 +159,7 @@ namespace DoctorClient
         public Patient GetPatient(string name)
         {
             Patient pa = new Patient();
-            foreach(Patient p in patientNames)
+            foreach(Patient p in patients)
             {
                 if(name == p.name)
                 {
