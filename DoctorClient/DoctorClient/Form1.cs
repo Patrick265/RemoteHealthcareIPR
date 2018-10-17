@@ -203,7 +203,7 @@ namespace DoctorClient
             bool result2 = int.TryParse(textBox1.Text, out int height);
             if (result1 && result2)
             {
-                Patient pc = doctor.AddPatient(txtReqDistance.Text, weight, height, dateTimePicker1.Value.Day + "/" + dateTimePicker1.Value.Month + '/' + dateTimePicker1.Value.Year, GenderCombo.SelectedItem.ToString() == "Man");
+                Patient pc = doctor.AddPatient(txtReqDistance.Text, weight, height, dateTimePicker1.Value.Day + "." + dateTimePicker1.Value.Month + '.' + dateTimePicker1.Value.Year, GenderCombo.SelectedItem.ToString() == "Man");
                 txtReqDistance.Text = "";
                 textBox1.Text = "";
                 textBox2.Text = "";

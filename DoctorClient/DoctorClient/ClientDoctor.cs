@@ -138,6 +138,10 @@ namespace DoctorClient
                         Console.WriteLine("PATIENTS: " + jsonReceive);
                         this.patientNames = GetPatientNames(jsonReceive);
                         this.patientNames.Concat(patientNames);
+                        foreach(Patient patient in this.patientNames)
+                        {
+                            Console.WriteLine(patient.age.ToString());
+                        }
                         break;
                     case "SendNewName":
                         string newClient = jsonReceive.name;

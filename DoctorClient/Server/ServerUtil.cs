@@ -32,6 +32,9 @@ namespace Server
 			Patrick.name = "Patrick de Jong";
 			Patrick.height = 175;
 			Patrick.weight = 63;
+            Patrick.male = true;
+            Patrick.CalculateAge();
+            Patrick.GenerateTargetedWatt();
 
             Patient Tom = new Patient();
 			Tom.date = new DateTime(1997, 9, 24).ToString("d",
@@ -39,6 +42,9 @@ namespace Server
 			Tom.name = "Tom Martens";
 			Tom.height = 183;
 			Tom.weight = 90;
+            Tom.male = true;
+            Tom.CalculateAge();
+            Tom.GenerateTargetedWatt();
 
             Patient Gerdtinus = new Patient();
 			Gerdtinus.date = new DateTime(1995, 12, 21).ToString("d",
@@ -46,6 +52,10 @@ namespace Server
 			Gerdtinus.name = "Gerdtinus Netten";
 			Gerdtinus.height = 180;
 			Gerdtinus.weight = 70;
+            Gerdtinus.male = true;
+            Gerdtinus.CalculateAge();
+            Gerdtinus.GenerateTargetedWatt();
+            
 
             Patient TimB = new Patient();
 			TimB.date = new DateTime(1996, 10, 11).ToString("d",
@@ -53,6 +63,9 @@ namespace Server
 			TimB.name = "Tim de Booij";
 			TimB.height = 181;
 			TimB.weight = 73;
+            TimB.male = true;
+            TimB.CalculateAge();
+            TimB.GenerateTargetedWatt();
 
             Patient TimV = new Patient();
 			TimV.date = new DateTime(1997, 6, 7).ToString("d",
@@ -60,6 +73,9 @@ namespace Server
 			TimV.name = "Tim de Vries";
 			TimV.height = 177;
 			TimV.weight = 60;
+            TimV.male = true;
+            TimV.CalculateAge();
+            TimV.GenerateTargetedWatt();
 
             Patient Renske = new Patient();
 			Renske.date = new DateTime(1999, 3, 11).ToString("d",
@@ -67,10 +83,13 @@ namespace Server
 			Renske.name = "Renske van der Veen";
 			Renske.height = 180;
 			Renske.weight = 75;
+            Renske.male = false;
+            Renske.CalculateAge();
+            Renske.GenerateTargetedWatt();
 
 
 
-			this.PatientsInfo.Add(Patrick);
+            this.PatientsInfo.Add(Patrick);
 			this.PatientsInfo.Add(Tom);
 			this.PatientsInfo.Add(Gerdtinus);
 			this.PatientsInfo.Add(TimB);
