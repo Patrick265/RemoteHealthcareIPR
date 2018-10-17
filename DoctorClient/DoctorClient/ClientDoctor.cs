@@ -26,6 +26,7 @@ namespace DoctorClient
     public class ClientDoctor
     {
         private Client client;
+        public AvansAstrand AvansAstrand { get; set; }
         public NetworkStream stream { get; set; }
         JsonConnector jc = new JsonConnector();
         private Label errorLabel;
@@ -162,6 +163,11 @@ namespace DoctorClient
                     case "Bike":
                         JObject data = (JObject)jsonReceive;
                         bikeInfoData = data.ToObject<RootObjectSendBikeInfo>();
+                        if (AvansAstrand != null)
+                        {
+                            AvansAstrand.FillChart();
+                        }
+                        Console.WriteLine(bikeInfoData.data);
                         break;
                     case "HistoryData":
                         SetHistoryData(jsonReceive);

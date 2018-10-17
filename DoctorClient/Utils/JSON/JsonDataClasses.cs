@@ -160,8 +160,8 @@ public class DataSendBikeInfo
 
 	public override string ToString()
 	{
-		return this.speed + "\n" + this.distance + "\n" + this.power + "\n" + this.requestedPower
-				+ "\n" + this.time + "\n" + this.RPM + "\n" + this.pulse + this.energy;
+		return "SPEED: " + this.speed + "\n" + "DISTANCE: " + this.distance + "\n" + "POWER: " + this.power + "\n" + "REQ POWER: " + this.requestedPower
+				+ "\n" + "TIME: " + this.time + "\n" + "RPM: " + this.RPM + "\n" + "PULSE: " + this.pulse + "ENERGY: " + this.energy;
 	}
 }
 

@@ -26,23 +26,23 @@ namespace BikeClient
         {
             Thread.Sleep(1000);
             jsonConnector = new JsonConnector();
-            client = new Client("145.48.6.10", 6666);
+           // client = new Client("145.48.6.10", 6666);
             string message = "{ \"id\":\"session/list\"}";
             String sessieID = "";
             String status = "";
 
             
                 //get clientinfo for each session active
-                dynamic json = JsonConvert.DeserializeObject(client.SendAndReceive(message));
-                Newtonsoft.Json.Linq.JArray clientinfos = json.data;
-                //search for the session on this computer
-                foreach (dynamic client in clientinfos)
-                {
-                    if (client.clientinfo.user == Environment.UserName && client.clientinfo.host == Environment.MachineName)
-                    {
-                        sessieID = client.id;
-                    }
-                }
+                //dynamic json = JsonConvert.DeserializeObject(client.SendAndReceive(message));
+                //Newtonsoft.Json.Linq.JArray clientinfos = json.data;
+                ////search for the session on this computer
+                //foreach (dynamic client in clientinfos)
+                //{
+                //    if (client.clientinfo.user == Environment.UserName && client.clientinfo.host == Environment.MachineName)
+                //    {
+                //        sessieID = client.id;
+                //    }
+                //}
 
                 
             Application.EnableVisualStyles();
