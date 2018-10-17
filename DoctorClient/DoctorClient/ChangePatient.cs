@@ -26,6 +26,14 @@ namespace DoctorClient
 			NameTextBox.Text = patients[index].name;
 			WeightTextBox.Text = patients[index].weight.ToString();
 			HeightTextBox.Text = patients[index].height.ToString();
+            if (patients[index].male)
+            {
+                GenderCombo.SelectedIndex = 0;
+            }
+            else
+            {
+                GenderCombo.SelectedIndex = 1;
+            }
 		}
 
 		private void ChangePatientButton_Click(object sender, EventArgs e)
@@ -36,7 +44,9 @@ namespace DoctorClient
 				patients[index].name = NameTextBox.Text;
 				patients[index].weight = Convert.ToInt32(WeightTextBox.Text);
 				patients[index].height = Convert.ToInt32(HeightTextBox.Text);
-				form.doctor.SendUsers(patients);
+                patients[index].male = GenderCombo.SelectedItem.ToString() == "Man";
+
+                form.doctor.SendUsers(patients);
 				Form1.getNames();
 				form.UpdateForm(form.machineNames, this.patients);
 

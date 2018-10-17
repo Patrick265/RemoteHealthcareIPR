@@ -50,6 +50,8 @@ namespace DoctorClient
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.GenderLabel = new System.Windows.Forms.Label();
+            this.GenderCombo = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.Menu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -106,6 +108,7 @@ namespace DoctorClient
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.GenderCombo);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.distance);
@@ -113,6 +116,7 @@ namespace DoctorClient
             this.groupBox1.Controls.Add(this.txtReqDistance);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.GenderLabel);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(648, 21);
@@ -212,7 +216,7 @@ namespace DoctorClient
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
-            this.button1.Location = new System.Drawing.Point(169, 212);
+            this.button1.Location = new System.Drawing.Point(168, 260);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(136, 38);
@@ -287,6 +291,32 @@ namespace DoctorClient
             this.listBox1.Size = new System.Drawing.Size(311, 444);
             this.listBox1.TabIndex = 2;
             // 
+            // GenderLabel
+            // 
+            this.GenderLabel.BackColor = System.Drawing.Color.White;
+            this.GenderLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GenderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenderLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
+            this.GenderLabel.Location = new System.Drawing.Point(29, 213);
+            this.GenderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.GenderLabel.Name = "GenderLabel";
+            this.GenderLabel.Size = new System.Drawing.Size(131, 30);
+            this.GenderLabel.TabIndex = 93;
+            this.GenderLabel.Text = "Geslacht";
+            // 
+            // GenderCombo
+            // 
+            this.GenderCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.GenderCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
+            this.GenderCombo.FormattingEnabled = true;
+            this.GenderCombo.Items.AddRange(new object[] {
+            "Man",
+            "Vrouw"});
+            this.GenderCombo.Location = new System.Drawing.Point(168, 213);
+            this.GenderCombo.Name = "GenderCombo";
+            this.GenderCombo.Size = new System.Drawing.Size(135, 28);
+            this.GenderCombo.TabIndex = 99;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,6 +361,8 @@ namespace DoctorClient
 		private Button AanpasKnop;
 		private Button button3;
 		private Button ChangeButton;
-	}
+        private ComboBox GenderCombo;
+        private Label GenderLabel;
+    }
 }
 

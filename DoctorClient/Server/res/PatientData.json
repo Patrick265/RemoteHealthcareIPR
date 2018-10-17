@@ -1,1 +1,50 @@
-[{"name":"Patrick de Jong","weight":63.0,"height":175,"date":"26.07.1995","TrainingSessions":null,"male":true},{"name":"Tom Martens","weight":90.0,"height":183,"date":"24.09.1997","TrainingSessions":null,"male":true},{"name":"Gerdtinus Netten","weight":70.0,"height":180,"date":"21.12.1995","TrainingSessions":null,"male":true},{"name":"Tim de Booij","weight":73.0,"height":181,"date":"11.10.1996","TrainingSessions":null,"male":true},{"name":"Tim de Vries","weight":60.0,"height":177,"date":"07.06.1997","TrainingSessions":null,"male":true},{"name":"Renske van der Veen","weight":75.0,"height":180,"date":"11.03.1999","TrainingSessions":null,"male":false},{"name":"Tim","weight":444.0,"height":444,"date":"4/10/2018","TrainingSessions":null,"male":false}]
+[{
+	"name": "Patrick de Jong",
+	"weight": 63.0,
+	"height": 175,
+	"date": "26.07.1995",
+	"TrainingSessions": null,
+	"male": true
+}, {
+	"name": "Tom Martens",
+	"weight": 90.0,
+	"height": 183,
+	"date": "24.09.1997",
+	"TrainingSessions": null,
+	"male": true
+}, {
+	"name": "Gerdtinus Netten",
+	"weight": 70.0,
+	"height": 180,
+	"date": "21.12.1995",
+	"TrainingSessions": null,
+	"male": true
+}, {
+	"name": "Tim de Booij",
+	"weight": 73.0,
+	"height": 181,
+	"date": "11.10.1996",
+	"TrainingSessions": null,
+	"male": true
+}, {
+	"name": "Tim de Vries",
+	"weight": 60.0,
+	"height": 177,
+	"date": "07.06.1997",
+	"TrainingSessions": null,
+	"male": true
+}, {
+	"name": "Renske van der Veen",
+	"weight": 75.0,
+	"height": 180,
+	"date": "11.03.1999",
+	"TrainingSessions": null,
+	"male": false
+}, {
+	"name": "Tim",
+	"weight": 444.0,
+	"height": 444,
+	"date": "4/10/2018",
+	"TrainingSessions": null,
+	"male": false
+}]

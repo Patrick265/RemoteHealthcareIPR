@@ -353,13 +353,14 @@ namespace DoctorClient
 
 
 
-        public Patient AddPatient(string name, float weight, int height, String date)
+        public Patient AddPatient(string name, float weight, int height, String date, bool male)
         {
             Patient patient = new Patient();
             patient.name = name;
             patient.weight = weight;
             patient.height = height;
             patient.date = date.ToString();
+            patient.male = male;
             dynamic json = jc.getJson(jc.AddPat(patient));
 
             ConnectionUtils.SendMessage(this.stream, json);

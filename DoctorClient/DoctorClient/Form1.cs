@@ -43,6 +43,7 @@ namespace DoctorClient
 
             this.patient = patient;
             Console.WriteLine("PATIENT IN FORM: " + patient.ToString());
+            GenderCombo.SelectedIndex = 0;
         }
 
         public static void getNames()
@@ -202,11 +203,12 @@ namespace DoctorClient
             bool result2 = int.TryParse(textBox1.Text, out int height);
             if (result1 && result2)
             {
-                Patient pc = doctor.AddPatient(txtReqDistance.Text, weight, height, dateTimePicker1.Value.Day + "/" + dateTimePicker1.Value.Month + '/' + dateTimePicker1.Value.Year);
+                Patient pc = doctor.AddPatient(txtReqDistance.Text, weight, height, dateTimePicker1.Value.Day + "/" + dateTimePicker1.Value.Month + '/' + dateTimePicker1.Value.Year, GenderCombo.SelectedItem.ToString() == "Man");
                 txtReqDistance.Text = "";
                 textBox1.Text = "";
                 textBox2.Text = "";
                 dateTimePicker1.Value = DateTime.Today;
+
 
                 patients.Add(pc);
                 getNames();

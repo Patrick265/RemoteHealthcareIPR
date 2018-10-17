@@ -20,7 +20,8 @@ namespace Utils.Model
             this.height = height;
             this.date = date;
             this.male = male;
-            TrainingSessions = trainingSessions;
+            this.TrainingSessions = trainingSessions;
+            this.male = male;
         }
 
         public Patient()
