@@ -167,293 +167,293 @@ public class JsonConnector
     }
 
     public dynamic MovetoNodeScene(string id, string stop, double[] position, string rotate,
-	    string interpolate, Boolean followheight, int speed, int time)
-	{
-		RootobjectMovetoNodeScene addNode = new RootobjectMovetoNodeScene();
-		addNode.data = new DataMovetoNodeScene();
-		addNode.id = "scene/node/moveto";
-		addNode.data.id = id;
-		addNode.data.stop = stop;
-		addNode.data.position = position;
-		addNode.data.rotate = rotate;
-		addNode.data.interpolate = interpolate;
-		addNode.data.followheight = followheight;
-		addNode.data.speed = speed;
-		addNode.data.time = time;
-		return addNode;
-	}
+        string interpolate, Boolean followheight, int speed, int time)
+    {
+        RootobjectMovetoNodeScene addNode = new RootobjectMovetoNodeScene();
+        addNode.data = new DataMovetoNodeScene();
+        addNode.id = "scene/node/moveto";
+        addNode.data.id = id;
+        addNode.data.stop = stop;
+        addNode.data.position = position;
+        addNode.data.rotate = rotate;
+        addNode.data.interpolate = interpolate;
+        addNode.data.followheight = followheight;
+        addNode.data.speed = speed;
+        addNode.data.time = time;
+        return addNode;
+    }
 
-	public dynamic DeleteNodeScene(string id)
-	{
-		Rootobject deleteNode = new Rootobject();
-		deleteNode.data = new Data();
-		deleteNode.id = "scene/node/delete";
-		deleteNode.data.id = id;
-		return deleteNode;
-	}
+    public dynamic DeleteNodeScene(string id)
+    {
+        Rootobject deleteNode = new Rootobject();
+        deleteNode.data = new Data();
+        deleteNode.id = "scene/node/delete";
+        deleteNode.data.id = id;
+        return deleteNode;
+    }
 
-	public dynamic FindNodeScene(string id)
-	{
-		Rootobject findNode = new Rootobject();
-		findNode.data = new Data();
-		findNode.id = "scene/node/find";
-		findNode.data.name = id;
-		return findNode;
-	}
+    public dynamic FindNodeScene(string id)
+    {
+        Rootobject findNode = new Rootobject();
+        findNode.data = new Data();
+        findNode.id = "scene/node/find";
+        findNode.data.name = id;
+        return findNode;
+    }
 
-	public dynamic AddLayerNodeScene(string id, string diffuse, string normal, int minHeight,
-	    int maxHeight, int fadeDist)
-	{
-		Rootobject addLayerNode = new Rootobject();
-		addLayerNode.data = new Data();
-		addLayerNode.id = "scene/node/addlayer";
-		addLayerNode.data.id = id;
-		addLayerNode.data.diffuse = diffuse;
-		addLayerNode.data.normal = normal;
-		addLayerNode.data.minHeight = minHeight;
-		addLayerNode.data.maxHeight = maxHeight;
-		addLayerNode.data.fadeDist = fadeDist;
-		return addLayerNode;
-	}
+    public dynamic AddLayerNodeScene(string id, string diffuse, string normal, int minHeight,
+        int maxHeight, int fadeDist)
+    {
+        Rootobject addLayerNode = new Rootobject();
+        addLayerNode.data = new Data();
+        addLayerNode.id = "scene/node/addlayer";
+        addLayerNode.data.id = id;
+        addLayerNode.data.diffuse = diffuse;
+        addLayerNode.data.normal = normal;
+        addLayerNode.data.minHeight = minHeight;
+        addLayerNode.data.maxHeight = maxHeight;
+        addLayerNode.data.fadeDist = fadeDist;
+        return addLayerNode;
+    }
 
-	public dynamic DellayerNodeScene()
-	{
-		Rootobject dellayerNode = new Rootobject();
-		dellayerNode.data = new Data();
-		dellayerNode.id = "scene/node/dellayer";
-		dellayerNode.data = new Data();
-		return dellayerNode;
-	}
+    public dynamic DellayerNodeScene()
+    {
+        Rootobject dellayerNode = new Rootobject();
+        dellayerNode.data = new Data();
+        dellayerNode.id = "scene/node/dellayer";
+        dellayerNode.data = new Data();
+        return dellayerNode;
+    }
 
-	public dynamic ClearPanelScene(string id)
-	{
-		Rootobject clearPanel = new Rootobject();
-		clearPanel.data = new Data();
-		clearPanel.id = "scene/panel/clear";
-		clearPanel.data.id = id;
-		return clearPanel;
-	}
+    public dynamic ClearPanelScene(string id)
+    {
+        Rootobject clearPanel = new Rootobject();
+        clearPanel.data = new Data();
+        clearPanel.id = "scene/panel/clear";
+        clearPanel.data.id = id;
+        return clearPanel;
+    }
 
-	public dynamic SwapPanelScene(string id)
-	{
-		Rootobject swapPanel = new Rootobject();
-		swapPanel.data = new Data();
-		swapPanel.id = "scene/panel/swap";
-		swapPanel.data.id = id;
-		return swapPanel;
-	}
+    public dynamic SwapPanelScene(string id)
+    {
+        Rootobject swapPanel = new Rootobject();
+        swapPanel.data = new Data();
+        swapPanel.id = "scene/panel/swap";
+        swapPanel.data.id = id;
+        return swapPanel;
+    }
 
-	public dynamic DrawlinesPanelScene(string id, int width, int[] lines)
-	{
-		Rootobject drawlines = new Rootobject();
-		drawlines.data = new Data();
-		drawlines.id = "scene/panel/drawlines";
-		drawlines.data.id = id;
-		drawlines.data.width = width;
-		drawlines.data.lines = lines;
-		return drawlines;
-	}
+    public dynamic DrawlinesPanelScene(string id, int width, int[] lines)
+    {
+        Rootobject drawlines = new Rootobject();
+        drawlines.data = new Data();
+        drawlines.id = "scene/panel/drawlines";
+        drawlines.data.id = id;
+        drawlines.data.width = width;
+        drawlines.data.lines = lines;
+        return drawlines;
+    }
 
-	public dynamic SetclearcolorPanelScene(string id, int[] color)
-	{
-		Rootobject setclearcolor = new Rootobject();
-		setclearcolor.data = new Data();
-		setclearcolor.id = "scene/panel/setclearcolor";
-		setclearcolor.data.id = id;
-		setclearcolor.data.color = color;
-		return setclearcolor;
-	}
+    public dynamic SetclearcolorPanelScene(string id, int[] color)
+    {
+        Rootobject setclearcolor = new Rootobject();
+        setclearcolor.data = new Data();
+        setclearcolor.id = "scene/panel/setclearcolor";
+        setclearcolor.data.id = id;
+        setclearcolor.data.color = color;
+        return setclearcolor;
+    }
 
-	public dynamic ImagePanelScene(string id, string image, double[] position, double[] size)
-	{
-		RootobjectImagePanelScene imagePanel = new RootobjectImagePanelScene();
-		imagePanel.data = new DataImagePanelScene();
-		imagePanel.id = "scene/panel/image";
-		imagePanel.data.id = id;
-		imagePanel.data.image = image;
-		imagePanel.data.position = position;
-		imagePanel.data.size = size;
-		return imagePanel;
-	}
+    public dynamic ImagePanelScene(string id, string image, double[] position, double[] size)
+    {
+        RootobjectImagePanelScene imagePanel = new RootobjectImagePanelScene();
+        imagePanel.data = new DataImagePanelScene();
+        imagePanel.id = "scene/panel/image";
+        imagePanel.data.id = id;
+        imagePanel.data.image = image;
+        imagePanel.data.position = position;
+        imagePanel.data.size = size;
+        return imagePanel;
+    }
 
-	public dynamic DrawTextPanelScene(string id, String text, double[] position, int size, int[] color, String font = null)
-	{
-		Rootobject drawText = new Rootobject();
-		drawText.data = new Data();
-		drawText.id = "scene/panel/drawtext";
-		drawText.data.id = id;
-		drawText.data.text = text;
-		drawText.data.position = position;
-		drawText.data.size = size;
-		drawText.data.color = color;
-		if (font != null) drawText.data.font = font;
-		return drawText;
-	}
+    public dynamic DrawTextPanelScene(string id, String text, double[] position, int size, int[] color, String font = null)
+    {
+        Rootobject drawText = new Rootobject();
+        drawText.data = new Data();
+        drawText.id = "scene/panel/drawtext";
+        drawText.data.id = id;
+        drawText.data.text = text;
+        drawText.data.position = position;
+        drawText.data.size = size;
+        drawText.data.color = color;
+        if (font != null) drawText.data.font = font;
+        return drawText;
+    }
 
 
-	public dynamic RouteFollowSpeed(string nodeId, double speed)
-	{
-		RootObjectFollowRouteSpeed routeFollow = new RootObjectFollowRouteSpeed();
-		routeFollow.data = new DataFollowRouteSpeed();
-		routeFollow.id = "route/follow/speed";
-		routeFollow.data.node = nodeId;
-		routeFollow.data.speed = speed;
-		return routeFollow;
-	}
+    public dynamic RouteFollowSpeed(string nodeId, double speed)
+    {
+        RootObjectFollowRouteSpeed routeFollow = new RootObjectFollowRouteSpeed();
+        routeFollow.data = new DataFollowRouteSpeed();
+        routeFollow.id = "route/follow/speed";
+        routeFollow.data.node = nodeId;
+        routeFollow.data.speed = speed;
+        return routeFollow;
+    }
 
-	public dynamic SkyboxSetTime(int time)
-	{
-		Rootobject SkyboxTime = new Rootobject();
-		SkyboxTime.data = new Data();
-		SkyboxTime.id = "scene/skybox/settime";
-		SkyboxTime.data.time = time;
-		return SkyboxTime;
-	}
+    public dynamic SkyboxSetTime(int time)
+    {
+        Rootobject SkyboxTime = new Rootobject();
+        SkyboxTime.data = new Data();
+        SkyboxTime.id = "scene/skybox/settime";
+        SkyboxTime.data.time = time;
+        return SkyboxTime;
+    }
 
-	public dynamic SkyboxUpdate(String type, Files files)
-	{
-		Rootobject SkyboxUpdate = new Rootobject();
-		SkyboxUpdate.data = new Data();
-		SkyboxUpdate.id = "scene/skybox/update";
-		SkyboxUpdate.data.type = type;
+    public dynamic SkyboxUpdate(String type, Files files)
+    {
+        Rootobject SkyboxUpdate = new Rootobject();
+        SkyboxUpdate.data = new Data();
+        SkyboxUpdate.id = "scene/skybox/update";
+        SkyboxUpdate.data.type = type;
         SkyboxUpdate.data.files = new Files();
-		SkyboxUpdate.data.files = files;
-		return SkyboxUpdate;
-	}
+        SkyboxUpdate.data.files = files;
+        return SkyboxUpdate;
+    }
 
 
-	public dynamic AddTerrainScene(int[] size, double[] heights)
-	{
-		RootobjectAddTerrainScene addTerrain = new RootobjectAddTerrainScene();
-		addTerrain.data = new DataAddTerrainScene();
-		addTerrain.id = "scene/terrain/add";
-		addTerrain.data.size = size;
-		addTerrain.data.heights = heights;
-		return addTerrain;
-	}
+    public dynamic AddTerrainScene(int[] size, double[] heights)
+    {
+        RootobjectAddTerrainScene addTerrain = new RootobjectAddTerrainScene();
+        addTerrain.data = new DataAddTerrainScene();
+        addTerrain.id = "scene/terrain/add";
+        addTerrain.data.size = size;
+        addTerrain.data.heights = heights;
+        return addTerrain;
+    }
 
-	public dynamic UpdateTerrainScene()
-	{
-		Rootobject updateTerrain = new Rootobject();
-		updateTerrain.data = new Data();
-		updateTerrain.id = "scene/terrain/update";
-		return updateTerrain;
-	}
-	public dynamic AddRoadScene(string route, string diffuse, string normal, string specular, float heightoffset)
-	{
-		Rootobject addPanel = new Rootobject();
-		addPanel.data = new Data();
-		addPanel.id = "scene/road/add";
-		addPanel.data.route = route;
-		addPanel.data.diffuse = diffuse;
-		addPanel.data.normal = normal;
-		addPanel.data.specular = specular;
-		addPanel.data.heightoffset = heightoffset;
-		return addPanel;
-	}
+    public dynamic UpdateTerrainScene()
+    {
+        Rootobject updateTerrain = new Rootobject();
+        updateTerrain.data = new Data();
+        updateTerrain.id = "scene/terrain/update";
+        return updateTerrain;
+    }
+    public dynamic AddRoadScene(string route, string diffuse, string normal, string specular, float heightoffset)
+    {
+        Rootobject addPanel = new Rootobject();
+        addPanel.data = new Data();
+        addPanel.id = "scene/road/add";
+        addPanel.data.route = route;
+        addPanel.data.diffuse = diffuse;
+        addPanel.data.normal = normal;
+        addPanel.data.specular = specular;
+        addPanel.data.heightoffset = heightoffset;
+        return addPanel;
+    }
 
-	public dynamic UpdateRoadScene(string id, string route, string diffuse, string normal, string specular, float heightoffset)
-	{
-		Rootobject updatePanel = new Rootobject();
-		updatePanel.data = new Data();
-		updatePanel.id = "scene/road/update";
-		updatePanel.data.id = id;
-		updatePanel.data.route = route;
-		updatePanel.data.diffuse = diffuse;
-		updatePanel.data.normal = normal;
-		updatePanel.data.specular = specular;
-		updatePanel.data.heightoffset = heightoffset;
-		return updatePanel;
-	}
+    public dynamic UpdateRoadScene(string id, string route, string diffuse, string normal, string specular, float heightoffset)
+    {
+        Rootobject updatePanel = new Rootobject();
+        updatePanel.data = new Data();
+        updatePanel.id = "scene/road/update";
+        updatePanel.data.id = id;
+        updatePanel.data.route = route;
+        updatePanel.data.diffuse = diffuse;
+        updatePanel.data.normal = normal;
+        updatePanel.data.specular = specular;
+        updatePanel.data.heightoffset = heightoffset;
+        return updatePanel;
+    }
 
-	public dynamic getHeightTerrainScene(double[] position, double[][] positions)
-	{
-		RootobjectGetHeightScene getHeight = new RootobjectGetHeightScene();
-		getHeight.data = new DataGetHeightScene();
-		getHeight.id = "scene/terrain/getheight";
-		getHeight.data.position = position;
-		getHeight.data.positions = positions;
-		return getHeight;
-	}
+    public dynamic getHeightTerrainScene(double[] position, double[][] positions)
+    {
+        RootobjectGetHeightScene getHeight = new RootobjectGetHeightScene();
+        getHeight.data = new DataGetHeightScene();
+        getHeight.id = "scene/terrain/getheight";
+        getHeight.data.position = position;
+        getHeight.data.positions = positions;
+        return getHeight;
+    }
 
-	public dynamic DeleteTerrainScene()
-	{
-		Rootobject deleteTerrain = new Rootobject();
-		deleteTerrain.data = new Data();
-		deleteTerrain.id = "scene/terrain/delete";
-		return deleteTerrain;
-	}
-    
-    
+    public dynamic DeleteTerrainScene()
+    {
+        Rootobject deleteTerrain = new Rootobject();
+        deleteTerrain.data = new Data();
+        deleteTerrain.id = "scene/terrain/delete";
+        return deleteTerrain;
+    }
 
-	public dynamic RouteDelete(string id)
-	{
-		Rootobject routeDelete = new Rootobject();
-		routeDelete.data = new Data();
-		routeDelete.id = "route/delete";
-		routeDelete.data.id = id;
 
-		return routeDelete;
-	}
 
-	public dynamic RouteShow(Boolean show)
-	{
-		Rootobject routeShow = new Rootobject();
-		routeShow.data = new Data();
-		routeShow.id = "route/show";
-		routeShow.data.show = show;
-		return routeShow;
-	}
+    public dynamic RouteDelete(string id)
+    {
+        Rootobject routeDelete = new Rootobject();
+        routeDelete.data = new Data();
+        routeDelete.id = "route/delete";
+        routeDelete.data.id = id;
 
-	public dynamic Get()
-	{
-		Rootobject get = new Rootobject();
-		get.data = new Data();
-		get.id = "get";
-		get.data.type = "head";
-		return get;
-	}
+        return routeDelete;
+    }
 
-	public dynamic SetCallback(string type, string button, string hand)
-	{
-		Rootobject setCallback = new Rootobject();
-		setCallback.data = new Data();
-		setCallback.id = "setcallback";
-		setCallback.data.type = "button";
-		setCallback.data.button = "trigger";
-		setCallback.data.hand = "left";
+    public dynamic RouteShow(Boolean show)
+    {
+        Rootobject routeShow = new Rootobject();
+        routeShow.data = new Data();
+        routeShow.id = "route/show";
+        routeShow.data.show = show;
+        return routeShow;
+    }
 
-		return setCallback;
-	}
+    public dynamic Get()
+    {
+        Rootobject get = new Rootobject();
+        get.data = new Data();
+        get.id = "get";
+        get.data.type = "head";
+        return get;
+    }
 
-	public dynamic SendBikeInfo(int speed, double distance, int power, int requestedPower, string time, double RPM, int pulse, string energy)
-	{
-		RootObjectSendBikeInfo sendBikeInfo = new RootObjectSendBikeInfo();
-		sendBikeInfo.data = new DataSendBikeInfo();
-		sendBikeInfo.id = "Bike";
-		sendBikeInfo.name = Environment.MachineName;
+    public dynamic SetCallback(string type, string button, string hand)
+    {
+        Rootobject setCallback = new Rootobject();
+        setCallback.data = new Data();
+        setCallback.id = "setcallback";
+        setCallback.data.type = "button";
+        setCallback.data.button = "trigger";
+        setCallback.data.hand = "left";
+
+        return setCallback;
+    }
+
+    public dynamic SendBikeInfo(int speed, double distance, int power, int requestedPower, string time, double RPM, int pulse, string energy)
+    {
+        RootObjectSendBikeInfo sendBikeInfo = new RootObjectSendBikeInfo();
+        sendBikeInfo.data = new DataSendBikeInfo();
+        sendBikeInfo.id = "Bike";
+        sendBikeInfo.name = Environment.MachineName;
         sendBikeInfo.data.speed = speed;
         sendBikeInfo.data.distance = distance;
-		sendBikeInfo.data.power = power;
-		sendBikeInfo.data.requestedPower = requestedPower;
-		sendBikeInfo.data.time = time;
-		sendBikeInfo.data.RPM = RPM;
-		sendBikeInfo.data.pulse = pulse;
-		sendBikeInfo.data.energy = energy;
-		return sendBikeInfo;
-	}
+        sendBikeInfo.data.power = power;
+        sendBikeInfo.data.requestedPower = requestedPower;
+        sendBikeInfo.data.time = time;
+        sendBikeInfo.data.RPM = RPM;
+        sendBikeInfo.data.pulse = pulse;
+        sendBikeInfo.data.energy = energy;
+        return sendBikeInfo;
+    }
 
-	public dynamic SendChange(string time, double distance, int requestedPower, string name)
-	{
-		RootObjectSendChange sendChange = new RootObjectSendChange();
-		sendChange.data = new DataSendChange();
-		sendChange.id = "Change";
-		sendChange.name = name;
-		sendChange.data.time = time;
-		sendChange.data.distance = distance;
-		sendChange.data.requestedPower = requestedPower;
-		return sendChange;
-	}
+    public dynamic SendChange(string time, double distance, int requestedPower, string name)
+    {
+        RootObjectSendChange sendChange = new RootObjectSendChange();
+        sendChange.data = new DataSendChange();
+        sendChange.id = "Change";
+        sendChange.name = name;
+        sendChange.data.time = time;
+        sendChange.data.distance = distance;
+        sendChange.data.requestedPower = requestedPower;
+        return sendChange;
+    }
 
     public dynamic SendChangePower(string name, int requestedPower)
     {
@@ -464,36 +464,36 @@ public class JsonConnector
         return sendChange;
     }
     public dynamic Connect(Boolean doctor)
-	{
-		RootObjectConnect connect = new RootObjectConnect();
-		connect.id = "AddClient";
-		connect.name = System.Environment.MachineName;
+    {
+        RootObjectConnect connect = new RootObjectConnect();
+        connect.id = "AddClient";
+        connect.name = System.Environment.MachineName;
         connect.doctor = doctor;
-		return connect;
-	}
+        return connect;
+    }
 
-	public dynamic SendNames(string[] names,  Patient[]patients)
-	{
-        
-		RootObjectSendNames sn = new RootObjectSendNames();
-		sn.id = "Ack";
-		sn.names = names;
+    public dynamic SendNames(string[] names, Patient[] patients)
+    {
+
+        RootObjectSendNames sn = new RootObjectSendNames();
+        sn.id = "Ack";
+        sn.names = names;
         sn.patientnames = patients;
-		return sn;
-	}
+        return sn;
+    }
 
-	public dynamic Play()
-	{
-		Rootobject play = new Rootobject();
-		play.id = "play";
-		return play;
-	}
-	public dynamic Pause()
-	{
-		Rootobject pause = new Rootobject();
-		pause.id = "pause";
-		return pause;
-	}
+    public dynamic Play()
+    {
+        Rootobject play = new Rootobject();
+        play.id = "play";
+        return play;
+    }
+    public dynamic Pause()
+    {
+        Rootobject pause = new Rootobject();
+        pause.id = "pause";
+        return pause;
+    }
 
     public dynamic BroadcastMessage(string message)
     {
@@ -529,31 +529,31 @@ public class JsonConnector
     }
 
 
-	public dynamic Login(BigInteger username, BigInteger password)
-	{
-		RootLogin rootLogin = new RootLogin();
-		rootLogin.id = "Login";
-		rootLogin.password = password;
-		rootLogin.username = username;
-		return rootLogin;
-	}
+    public dynamic Login(BigInteger username, BigInteger password)
+    {
+        RootLogin rootLogin = new RootLogin();
+        rootLogin.id = "Login";
+        rootLogin.password = password;
+        rootLogin.username = username;
+        return rootLogin;
+    }
 
-	public dynamic LoginResponse(Boolean access)
-	{
-		LoginResponse loginResponse = new LoginResponse();
-		loginResponse.id = "LoginResponse";
-		loginResponse.response = access;
-		return loginResponse;
-	}
+    public dynamic LoginResponse(Boolean access)
+    {
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.id = "LoginResponse";
+        loginResponse.response = access;
+        return loginResponse;
+    }
 
-	public dynamic AccesHistory(Patient patientInfo)
-	{
-		RootDataHistory history = new RootDataHistory();
-		history.id = "AccesHistory";
-		history.info = patientInfo;
-		
-		return history;
-	}
+    public dynamic AccesHistory(Patient patientInfo)
+    {
+        RootDataHistory history = new RootDataHistory();
+        history.id = "AccesHistory";
+        history.info = patientInfo;
+
+        return history;
+    }
 
     public dynamic AssignPt(string name)
     {
@@ -581,9 +581,9 @@ public class JsonConnector
 
     public dynamic AddPatientNames(List<Patient> patient)
     {
-		AllPatients ap = new AllPatients();
-		ap.id = "PatientNames";
-		ap.data = patient;
+        AllPatients ap = new AllPatients();
+        ap.id = "PatientNames";
+        ap.data = patient;
         return ap;
     }
 
@@ -596,7 +596,7 @@ public class JsonConnector
         json.date = birth;
         return json;
     }
-    
+
     public dynamic sendHistoryData(string json)
     {
         HistoryJson hj = new HistoryJson();
@@ -619,7 +619,6 @@ public class JsonConnector
         dynamic test = new JObject();
         test.id = "StartAstrand";
         test.name = name;
-        //test.patient = new JObject();
         test.patient = JObject.FromObject(p);
         return test;
     }
@@ -632,4 +631,7 @@ public class JsonConnector
         info.name = name;
         return info;
     }
+
+
+
 }
