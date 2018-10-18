@@ -18,6 +18,7 @@ namespace Server
 		public List<Patient> PatientList { get; set; }
 		public static LoginStorage Storage;
 		public ServerUtil Util;
+        public static Exercise exercise { get; set; }
 
 		/// <summary>
 		/// The constructor for the server
@@ -84,5 +85,10 @@ namespace Server
 			}
 			throw new Exception("ERROR: No network adapters with an IPv4 address in the system!");
 		}
+       
+        public static void StartAstrand(string name, Patient p, NetworkStream bikeStream, NetworkStream dStream)
+        {
+            exercise = new Exercise(name, p, bikeStream, dStream);
+        }
 	}
 }

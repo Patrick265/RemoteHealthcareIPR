@@ -36,6 +36,7 @@ namespace Server
 		private JsonConnector jsonConnector;
 		private int IndexOfPatient;
 		private List<Patient> patients;
+        private Exercise exercise;
 
 		/// <summary>
 		/// The constructor of HandleAClient
@@ -129,6 +130,11 @@ namespace Server
                             this.patients = JsonConvert.DeserializeObject<List<Patient>>(jsonReceive.data.ToString());
 							File.WriteAllText("../../res/PatientData.json", JsonConvert.SerializeObject(this.patients));
 							break;
+                        case "StartAstrand":
+                            string AaName = jsonReceive.name;
+                            Patient p = jsonReceive.patient.ToObject<Patient>();
+                            Server.StartAstrand(machine, p, clientList[AaName].Stream, clientList["doctor"].Stream);
+                            break;
 					}
 				}
 			}
@@ -273,7 +279,15 @@ namespace Server
 		/// </summary>
 		/// <param name="jsonRecieve">The json recieved from the client's bike</param>
 		private void AddDataBikeInfo(dynamic jsonRecieve)
-		{
+        {
+            string name = jsonRecieve.name;
+            if (Server.exercise != null && Server.exercise.machineName == name) 
+            {
+                string time = jsonRecieve.data.time;
+                int pulse = jsonRecieve.data.pulse;
+                Server.exercise.CheckTime(time);
+                Server.exercise.pulse = pulse;
+            }
 			string doctorId = "doctor";
 			string json = JsonConvert.SerializeObject(jsonRecieve);
 			if (this.clientList.ContainsKey(doctorId))

@@ -171,10 +171,15 @@ namespace DoctorClient
                         {
                             AvansAstrand.FillChart();
                         }
-                        Console.WriteLine(bikeInfoData.data);
+                        //Console.WriteLine(bikeInfoData.data);
                         break;
                     case "HistoryData":
                         SetHistoryData(jsonReceive);
+                        break;
+                    case "Astrand":
+                        string AInfo = jsonReceive.info;
+                        string AName = jsonReceive.name;
+                        AvansAstrand.SetInfo(AInfo, AName);
                         break;
 
                 }
@@ -274,6 +279,12 @@ namespace DoctorClient
         public void SendEmergencyStop(string name)
         {
             dynamic json = jc.getJson(jc.EmergencyStop(name));
+            SendToServer(json);
+        }
+
+        public void StartAvansTest(string name, Patient patient)
+        {
+            dynamic json = jc.getJson(jc.StartAvansTest(name, patient));
             SendToServer(json);
         }
 

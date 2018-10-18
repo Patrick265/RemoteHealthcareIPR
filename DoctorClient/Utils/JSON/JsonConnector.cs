@@ -613,4 +613,23 @@ public class JsonConnector
         sendChange.time = time;
         return sendChange;
     }
+
+    public dynamic StartAvansTest(string name, Patient p)
+    {
+        dynamic test = new JObject();
+        test.id = "StartAstrand";
+        test.name = name;
+        //test.patient = new JObject();
+        test.patient = JObject.FromObject(p);
+        return test;
+    }
+
+    public dynamic SendDocAstrandInfo(string infor, string name)
+    {
+        dynamic info = new JObject();
+        info.id = "Astrand";
+        info.info = infor;
+        info.name = name;
+        return info;
+    }
 }

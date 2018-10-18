@@ -4,40 +4,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Timer = System.Timers.Timer;
 using Utils.Model;
+using System.Net.Sockets;
+using Utils.Connection;
 
-namespace DoctorClient
+namespace Server
 {
     class Exercise
     {
-        private AvansAstrand form;
-        private ClientDoctor doctor;
-        private string machineName;
         public int Index { get; set; }
         private int power;
         private Timer timer;
         private Timer timer2;
         private Patient patient;
         private int TargetWatt;
-        private BikeClientInfo bikeInfo;
         private List<int> PulseValues;
         private List<int> FirstPulseValues;
+        private NetworkStream bikeStream;
+        private NetworkStream doctorStream;
+        private JsonConnector jc;
+        public string machineName;
+        private string time;
+        public int pulse { get; set; }
+        private bool EndOfCheckFor0;
 
-
-        public Exercise(AvansAstrand form, ClientDoctor doctor, string name, Patient p, BikeClientInfo bikeInfo)
+        public Exercise(string name, Patient p, NetworkStream bikeStream, NetworkStream doctorStream)
         {
-            this.bikeInfo = bikeInfo;
-            this.patient = p;
             this.machineName = name;
-            this.doctor = doctor;
-            this.form = form;
+            this.jc = new JsonConnector();
+            this.bikeStream = bikeStream;
+            this.doctorStream = doctorStream;
+            this.patient = p;
             this.Index = 0;
+            this.EndOfCheckFor0 = false;
             PulseValues = new List<int>();
             FirstPulseValues = new List<int>();
-            GetStartingWatt();
-            Next();
+            TargetWatt = p.TargettedWat;
+            Console.WriteLine("TARGETWAT: " + TargetWatt);
+            StartUpTest();
         }
 
         public void Next()
@@ -65,14 +70,65 @@ namespace DoctorClient
             }
         }
 
+        public void CheckTime(string time)
+        {
+            this.time = time;
+            if(time == "00:01")
+            {
+                Console.WriteLine("00:01 bereikt");
+                if (!EndOfCheckFor0)
+                {
+                    Index++;
+                    Next();
+                }
+            }
+            if(time == "04:00" || time == "03:00")
+            {
+                FirstPulseValues.Add(pulse);
+            }
+            if(time == "02:00")
+            {
+                CheckSteadyState();
+                Console.WriteLine("NEW PULSE: " + pulse);
+                PulseValues.Add(pulse);
+
+            }
+        }
+
+        public void SendChangeTime(string time)
+        {
+            dynamic message = jc.getJson(jc.SendChangeTime(time, machineName));
+            ConnectionUtils.SendMessage(bikeStream, message);
+        }
+
+        public void sendChangePower(int power)
+        {
+            dynamic message = jc.getJson(jc.SendChangePower(machineName, power));
+            ConnectionUtils.SendMessage(bikeStream, message);
+        }
+
+        public void SendInfoBike(string info)
+        {
+            string json = jc.getJson(jc.SendMessage(info));
+            ConnectionUtils.SendMessage(bikeStream, json);
+        }
+
+        public void SendInfoDoctor(string info)
+        {
+            string json = jc.getJson(jc.SendDocAstrandInfo(info, machineName));
+            ConnectionUtils.SendMessage(doctorStream, json);
+        }
+
         /// <summary>
         /// Method gets executed when the test starts
         /// </summary>
         public void StartUpTest()
         {
-            form.UpdateText.Text = "Over 5 seconden begint de warming-up";
-            doctor.BroadcastPersonalMessage("Over 5 seconden begint de warming-up", machineName);
-            doctor.SendChangeTime("0005", machineName);
+            SendChangeTime("0005");
+            SendInfoBike("Over 5 seconden begint de warming-up");
+            SendInfoDoctor("Over 5 seconden begint de warming-up");
+            sendChangePower(50);
+            this.power = 50;
         }
 
         /// <summary>
@@ -80,15 +136,10 @@ namespace DoctorClient
         /// </summary>
         public void StartWarmUp()
         {
-            form.Invoke(new MethodInvoker(delegate
-            {
-                form.UpdateText.Text = "Fiets 2 minuten lang op een rustig tempo";
-            }));
-            
-            doctor.BroadcastPersonalMessage("Fiets 2 minuten lang op een rustig tempo", machineName);
-            doctor.SendChangePower(50, machineName);
-            power = 50;
-            doctor.SendChangeTime("0010", machineName);
+            string info = "Fiets 2 minuten lang op een rustig tempo";
+            SendChangeTime("0011");
+            SendInfoBike(info);
+            SendInfoDoctor(info);
         }
 
         /// <summary>
@@ -96,16 +147,11 @@ namespace DoctorClient
         /// </summary>
         public void StartTrainingSession()
         {
-            form.Invoke(new MethodInvoker(delegate
-            {
-                form.UpdateText.Text = "De trainingsessie is begonnen, fiets met een RPM van 60!";
-            }));
+            this.EndOfCheckFor0 = true;
+            SendChangeTime("0211");
+            SendInfoBike("De trainingsessie is begonnen, fiets met een RPM van 60!");
+            SendInfoDoctor("De trainingsessie is begonnen, fiets met een RPM van 60!");
             GetFirstPulseValuesEx();
-            doctor.SendChangeTime("0400", machineName);
-            doctor.BroadcastPersonalMessage("De trainingsessie is begonnen, fiets met een RPM van 60!", machineName);
-            timer = new Timer(60000);
-            timer.Elapsed += GetFirstPulseValues;
-            timer.Start();
             BuildToTargetTimer();
         }
 
@@ -118,9 +164,7 @@ namespace DoctorClient
             timer = new Timer(15000);
             timer.Elapsed += GetPulse;
             timer.Start();
-
             
-                
         }
 
         public void CheckValues()
@@ -143,6 +187,7 @@ namespace DoctorClient
             }
             else
             {
+                RestartTest();
                 //Check if there are invalid values in the pulseValues and filter them out
                 //if after this check there's still no steady state you need to execute another 2 minutes of checksteadystate (update timer)
             }
@@ -153,17 +198,13 @@ namespace DoctorClient
         /// </summary>
         public void StartCooldown()
         {
-            doctor.SendChangeTime("0100", machineName);
-            form.Invoke(new MethodInvoker(delegate
-            {
-                form.UpdateText.Text = "De cooldown is begonnen, fiets op een rustig tempo door";
-            }));
-
-            doctor.BroadcastPersonalMessage("De cooldown is begonnen, fiets op een rustig tempo door", machineName);
-            
-            timer = new Timer(5000);
-            timer.Elapsed += DecreasePower;
-            timer.Start();
+            SendChangeTime("0100");
+            SendInfoBike("De cooldown is begonnen, fiets op een rustig tempo door");
+            SendInfoDoctor("De cooldown is begonnen, fiets op een rustig tempo door");
+            sendChangePower(50);
+            //timer = new Timer(5000);
+            //timer.Elapsed += DecreasePower;
+            //timer.Start();
         }
 
         /// <summary>
@@ -171,9 +212,9 @@ namespace DoctorClient
         /// </summary>
         public void StopExercise()
         {
-            form.UpdateText.Text = "De Avans Astrand test is afgelopen";
-            doctor.BroadcastPersonalMessage("De Avans Astrand test is afgelopen", machineName);
-            form.infoScreen.Text = "";
+            //form.UpdateText.Text = "De Avans Astrand test is afgelopen";
+            //doctor.BroadcastPersonalMessage("De Avans Astrand test is afgelopen", machineName);
+            //form.infoScreen.Text = "";
         }
 
 
@@ -194,14 +235,14 @@ namespace DoctorClient
         /// </summary>
         public void GetPulse(Object source, ElapsedEventArgs e)
         {
-            if (PulseValues.Count < 7)
+            if (PulseValues.Count < 8)
             {
-                Console.WriteLine("NEW PULSE: " + bikeInfo.pulse);
-                PulseValues.Add(bikeInfo.pulse);
+                Console.WriteLine("NEW PULSE: " + pulse + " Amount: " + PulseValues.Count);
+                PulseValues.Add(pulse);
             }
             else
             {
-                PulseValues.Add(bikeInfo.pulse);
+                PulseValues.Add(pulse);
                 timer.Stop();
                 CheckValues();
             }
@@ -214,15 +255,15 @@ namespace DoctorClient
         /// </summary>
         public void BuildToTarget(Object source, ElapsedEventArgs e)
         {
-            if(power < TargetWatt)
+            if (power < TargetWatt)
             {
                 power = power + 5;
-                doctor.SendChangePower(power, machineName);
+                sendChangePower(power);
             }
             else
             {
                 timer2.Stop();
-                if(bikeInfo.pulse < 90)
+                if (pulse < 90)
                 {
                     TargetWatt += 25;
                     BuildToTargetTimer();
@@ -233,15 +274,15 @@ namespace DoctorClient
 
         public void DecreasePower(Object source, ElapsedEventArgs e)
         {
-            
-            if(power == 25)
+
+            if (power == 25)
             {
                 timer.Stop();
             }
             else
             {
                 power -= 25;
-                doctor.SendChangePower(power, machineName);
+                //doctor.SendChangePower(power, machineName);
             }
             Console.WriteLine("NEW POWER: " + power);
         }
@@ -268,7 +309,12 @@ namespace DoctorClient
         {
             TargetWatt += 25;
             power += 25;
-            doctor.SendChangePower(power, machineName);
+            PulseValues.Clear();
+            PulseValues.Add(pulse);
+            //BuildToTargetTimer();
+            sendChangePower(power);//Would be better to increase the power by steps
+            SendChangeTime("0200");
+            CheckSteadyState();
             Console.WriteLine("Test needs to be restarted!!");
 
         }
@@ -282,18 +328,18 @@ namespace DoctorClient
         {
             if (FirstPulseValues.Count < 2)
             {
-                FirstPulseValues.Add(bikeInfo.pulse);
+                //FirstPulseValues.Add(bikeInfo.pulse);
                 Console.WriteLine("FIRSTPULSEVALUES: " + FirstPulseValues.Count);
-                
+
             }
             else
             {
-                FirstPulseValues.Add(bikeInfo.pulse);
+                //FirstPulseValues.Add(bikeInfo.pulse);
                 timer.Stop();
                 CheckSteadyState();
             }
         }
-        
+
         public int GetAverage()
         {
             return 100;

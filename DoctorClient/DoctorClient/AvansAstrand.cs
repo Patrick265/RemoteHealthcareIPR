@@ -23,13 +23,14 @@ namespace DoctorClient
         public Chart Chart;
         private ClientDoctor doctor;
         public string time;
-        private Exercise exercise;
         private bool hasBeen0;
+        private string machineName;
 
 
         public AvansAstrand(ClientDoctor clientDoc, string name, Patient p, BikeClientInfo bikeInfo)
         {
             InitializeComponent();
+            this.machineName = name;
             this.time = "";
             this.doctor = clientDoc;
             this.Chart = DataChart;
@@ -39,26 +40,21 @@ namespace DoctorClient
             this.RPMLabel = RPMlabel;
             this.PowerLabel = WeerstandLabel;
             Patient patient = p;
-            this.exercise = new Exercise(this, doctor, name, patient, bikeInfo);
+            //this.exercise = new Exercise(this, doctor, name, patient, bikeInfo);
             this.hasBeen0 = false;
             this.doctor.AvansAstrand = this;
         }
+        
 
-        public void CheckTime()
+        public void SetInfo(string info, string name)
         {
-            if (!hasBeen0)
+            if(name == machineName)
             {
-                if (time == "10:00")
-                {
-                    exercise.Index++;
-                    exercise.Next();
-                    hasBeen0 = true;
-                }
-            }
-            if (time == "07:00" || time == "03:50" || time == "00:01")
-            {
-                exercise.Index++;
-                exercise.Next();
+                this.Invoke(new MethodInvoker(delegate
+                    {
+                        UpdateLabel.Text = info;
+                    }));
+                
             }
         }
 

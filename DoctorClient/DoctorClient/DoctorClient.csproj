@@ -70,7 +70,6 @@
       <DependentUpon>ChangePatient.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientDoctor.cs" />
-    <Compile Include="Exercise.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
