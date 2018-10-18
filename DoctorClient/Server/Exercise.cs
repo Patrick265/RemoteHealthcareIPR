@@ -27,10 +27,13 @@ namespace Server
         public string machineName;
         private string time;
         public int pulse { get; set; }
+        public int rpm { get; set; }
         private bool EndOfCheckFor0;
+        private bool CheckRPM;
 
         public Exercise(string name, Patient p, NetworkStream bikeStream, NetworkStream doctorStream)
         {
+            this.CheckRPM = false;
             this.machineName = name;
             this.jc = new JsonConnector();
             this.bikeStream = bikeStream;
@@ -91,7 +94,19 @@ namespace Server
                 CheckSteadyState();
                 Console.WriteLine("NEW PULSE: " + pulse);
                 PulseValues.Add(pulse);
-
+            }
+            if(this.CheckRPM == true)
+            {
+                if(rpm < 50)
+                {
+                    SendInfoBike("U fietst niet hard genoeg, probeer rond de 60 rpm te blijven");
+                    SendInfoDoctor("De patient fietst te zacht en heeft een waarschuwing gekregen");
+                }
+                if(rpm > 70)
+                {
+                    SendInfoBike("U fietst te snel, probeer rond de 60 rpm te blijven");
+                    SendInfoDoctor("De patient fietst te hard en heeft een waarschuwing gekregen");
+                }
             }
         }
 
@@ -137,7 +152,8 @@ namespace Server
         public void StartWarmUp()
         {
             string info = "Fiets 2 minuten lang op een rustig tempo";
-            SendChangeTime("0011");
+            SendChangeTime("0011");//Test Value
+            //SendChangeTime("0200");//Real value
             SendInfoBike(info);
             SendInfoDoctor(info);
         }
@@ -148,7 +164,9 @@ namespace Server
         public void StartTrainingSession()
         {
             this.EndOfCheckFor0 = true;
-            SendChangeTime("0211");
+            this.CheckRPM = true;
+            SendChangeTime("0211");//Test Value
+            SendChangeTime("0401");//Real value
             SendInfoBike("De trainingsessie is begonnen, fiets met een RPM van 60!");
             SendInfoDoctor("De trainingsessie is begonnen, fiets met een RPM van 60!");
             GetFirstPulseValuesEx();
@@ -198,6 +216,7 @@ namespace Server
         /// </summary>
         public void StartCooldown()
         {
+            this.CheckRPM = false;
             SendChangeTime("0100");
             SendInfoBike("De cooldown is begonnen, fiets op een rustig tempo door");
             SendInfoDoctor("De cooldown is begonnen, fiets op een rustig tempo door");
@@ -342,7 +361,7 @@ namespace Server
 
         public int GetAverage()
         {
-            return 100;
+            return (int)PulseValues.Average();
         }
 
     }

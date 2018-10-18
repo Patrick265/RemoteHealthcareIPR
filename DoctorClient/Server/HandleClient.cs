@@ -285,8 +285,10 @@ namespace Server
             {
                 string time = jsonRecieve.data.time;
                 int pulse = jsonRecieve.data.pulse;
+                int rpm = jsonRecieve.data.RPM;
                 Server.exercise.CheckTime(time);
                 Server.exercise.pulse = pulse;
+                Server.exercise.rpm = rpm;
             }
 			string doctorId = "doctor";
 			string json = JsonConvert.SerializeObject(jsonRecieve);
