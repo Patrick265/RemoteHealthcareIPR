@@ -47,7 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exercise.cs" />
+    <Compile Include="Exercise\Context.cs" />
+    <Compile Include="Exercise\ExerciseConnection.cs" />
+    <Compile Include="Exercise\ExerciseState.cs" />
+    <Compile Include="Exercise\State\CoolDownState.cs" />
+    <Compile Include="Exercise\State\FinishedState.cs" />
+    <Compile Include="Exercise\State\TrainingState.cs" />
+    <Compile Include="Exercise\State\WarmUpState.cs" />
     <Compile Include="HandleClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

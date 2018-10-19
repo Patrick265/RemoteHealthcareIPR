@@ -11,6 +11,7 @@ using Utils.Model;
 using System.Globalization;
 using Utils;
 using System.Numerics;
+using Server.Exercise;
 
 namespace Server
 {
@@ -36,7 +37,7 @@ namespace Server
 		private JsonConnector jsonConnector;
 		private int IndexOfPatient;
 		private List<Patient> patients;
-        private Exercise exercise;
+        private Context exercise;
 
 		/// <summary>
 		/// The constructor of HandleAClient
@@ -144,8 +145,6 @@ namespace Server
 			this.Stream.Close();
 			Console.WriteLine("Networkstream closed of client {0}", this.Name);
 		}
-
-
 
 		private void Combine(dynamic jsonReceive)
 		{
@@ -281,14 +280,13 @@ namespace Server
 		private void AddDataBikeInfo(dynamic jsonRecieve)
         {
             string name = jsonRecieve.name;
-            if (Server.exercise != null && Server.exercise.machineName == name) 
+            if (Server.exercise != null && Server.exercise.State.MachineName == name) 
             {
                 string time = jsonRecieve.data.time;
                 int pulse = jsonRecieve.data.pulse;
                 int rpm = jsonRecieve.data.RPM;
-                Server.exercise.CheckTime(time);
-                Server.exercise.pulse = pulse;
-                Server.exercise.rpm = rpm / 10;
+                Server.exercise.State.Pulse = pulse;
+                Server.exercise.State.Rpm = rpm / 10;
             }
 			string doctorId = "doctor";
 			string json = JsonConvert.SerializeObject(jsonRecieve);

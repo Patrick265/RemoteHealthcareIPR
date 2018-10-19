@@ -111,29 +111,7 @@ namespace Server
             }
         }
 
-        public void SendChangeTime(string time)
-        {
-            dynamic message = jc.getJson(jc.SendChangeTime(time, machineName));
-            ConnectionUtils.SendMessage(bikeStream, message);
-        }
-
-        public void sendChangePower(int power)
-        {
-            dynamic message = jc.getJson(jc.SendChangePower(machineName, power));
-            ConnectionUtils.SendMessage(bikeStream, message);
-        }
-
-        public void SendInfoBike(string info)
-        {
-            string json = jc.getJson(jc.SendMessage(info));
-            ConnectionUtils.SendMessage(bikeStream, json);
-        }
-
-        public void SendInfoDoctor(string info)
-        {
-            string json = jc.getJson(jc.SendDocAstrandInfo(info, machineName));
-            ConnectionUtils.SendMessage(doctorStream, json);
-        }
+ 
 
         /// <summary>
         /// Method gets executed when the test starts

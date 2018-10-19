@@ -632,6 +632,10 @@ public class JsonConnector
         return info;
     }
 
-
-
+    public dynamic StopAstrand()
+    {
+        dynamic stop = new JObject();
+        stop.id = "StopAstrand";
+        return stop;
+    }
 }

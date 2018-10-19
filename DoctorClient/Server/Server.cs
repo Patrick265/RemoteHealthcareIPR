@@ -7,6 +7,8 @@ using System.Threading;
 using Newtonsoft.Json;
 using System.IO;
 using Utils.Credentials;
+using Server.Exercise;
+using Server.Exercise.State;
 
 namespace Server
 {
@@ -18,7 +20,7 @@ namespace Server
 		public List<Patient> PatientList { get; set; }
 		public static LoginStorage Storage;
 		public ServerUtil Util;
-        public static Exercise exercise { get; set; }
+        public static Context exercise { get; set; }
 
 		/// <summary>
 		/// The constructor for the server
@@ -86,9 +88,10 @@ namespace Server
 			throw new Exception("ERROR: No network adapters with an IPv4 address in the system!");
 		}
        
-        public static void StartAstrand(string name, Patient p, NetworkStream bikeStream, NetworkStream dStream)
+        public static void StartAstrand(string MachineName, Patient Patient, NetworkStream BikeStream, NetworkStream DoctorStream)
         {
-            exercise = new Exercise(name, p, bikeStream, dStream);
+            exercise = new Context(new WarmUpState(BikeStream, DoctorStream, Patient, MachineName));
+            exercise.Request();
         }
 	}
 }
