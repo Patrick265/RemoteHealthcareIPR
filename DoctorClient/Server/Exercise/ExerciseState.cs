@@ -27,9 +27,9 @@ namespace Server.Exercise
 
         public ExerciseState(NetworkStream bikeStream, NetworkStream doctorStream, Patient patient, string MachineName)
         {
-            this.DurationWarmUp = 15000;
-            this.DurationTrainingSession = 30000;
-            this.DurationCooldown = 7000;
+            this.DurationWarmUp = 120000;
+            this.DurationTrainingSession = 240000;
+            this.DurationCooldown = 60000;
             this.ExerciseConnection = new ExerciseConnection(bikeStream, doctorStream);
             this.MachineName = MachineName;
             this.Patient = patient;
@@ -58,7 +58,7 @@ namespace Server.Exercise
 
         public void CheckRPM()
         {
-            Console.WriteLine("CHECKING THE GODDAMN RPM!!!!!");
+            //Console.WriteLine("CHECKING THE GODDAMN RPM!!!!!");
             if (this.Rpm < 50)
             {
                 this.ExerciseConnection.SendInfoBike("U fietst niet hard genoeg, probeer rond de 60 rpm te blijven");

@@ -33,7 +33,7 @@ namespace Server.Exercise.State
             this.PulseTimer.Elapsed += new ElapsedEventHandler(DataRetriever);
             this.PulseTimer.Enabled = true;
 
-            base.ExerciseConnection.SendChangeTime("0030", base.MachineName);
+            base.ExerciseConnection.SendChangeTime("0400", base.MachineName);
             base.ExerciseConnection.SendInfoDoctor("De trainingsessie is begonnen, fiets met een RPM van 60!", base.MachineName);
             base.ExerciseConnection.SendInfoBike("De trainingsessie is begonnen, fiets met een RPM van 60!");
             base.ExerciseConnection.sendChangePower(base.Patient.TargettedWat, base.MachineName);
@@ -43,8 +43,11 @@ namespace Server.Exercise.State
         {
             this.PulseTimer.Stop();
             this.Timer.Stop();
+
             Console.WriteLine("MINUTE: " + this.PulseMinute.Count);
             Console.WriteLine("SECOND: " + this.PulseSecond.Count);
+            Console.WriteLine("AVERAGE: " + GetAverageHeartRate());
+
             this.Context.State = new CoolDownState(base.ExerciseConnection.BikeStream, base.ExerciseConnection.DoctorStream, base.Patient, base.MachineName);
             this.Context.Request();
             Console.WriteLine(DateTime.Now + " Changed To Cooldown");
@@ -72,9 +75,18 @@ namespace Server.Exercise.State
 
 
 
-        public void GetAverageHeartRate()
+        public double GetAverageHeartRate()
         {
-            throw new NotImplementedException();
+            double num = 0;
+            foreach (KeyValuePair<DateTime, double> entry in this.PulseMinute) {
+                num += entry.Value;
+            }
+            foreach (KeyValuePair<DateTime, double> entry in this.PulseSecond)
+            {
+                num += entry.Value;
+            }
+            double length = this.PulseMinute.Count + this.PulseSecond.Count;
+            return num  / length;
         }
     }
 }
