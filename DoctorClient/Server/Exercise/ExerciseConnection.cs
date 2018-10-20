@@ -1,5 +1,10 @@
-﻿using System.Net.Sockets;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Sockets;
 using Utils.Connection;
+using Utils.Model;
 
 namespace Server.Exercise
 {
@@ -21,7 +26,7 @@ namespace Server.Exercise
             this.DoctorStream = doctorStream;
         }
 
-        public void SendChangeTime(string time,string machineName)
+        public void SendChangeTime(string time, string machineName)
         {
             dynamic message = this.jc.getJson(jc.SendChangeTime(time, machineName));
             ConnectionUtils.SendMessage(this.BikeStream, message);
@@ -43,6 +48,25 @@ namespace Server.Exercise
         {
             string json = jc.getJson(jc.SendDocAstrandInfo(info, machineName));
             ConnectionUtils.SendMessage(this.DoctorStream, json);
+        }
+
+
+        public void WriteSessionToFile(AstrandSession session)
+        {
+            if(new FileInfo("../../res/AstrandSession.json").Length != 0)
+            {
+                string json = File.ReadAllText("../../res/AstrandSession.json");
+                List<AstrandSession> oldSessions = JsonConvert.DeserializeObject<List<AstrandSession>>(json);
+                File.WriteAllText("../../res/AstrandSession.json", JsonConvert.SerializeObject(oldSessions.ToString()));
+            }
+            else
+            {
+                List<AstrandSession> sessions = new List<AstrandSession>();
+                sessions.Add(session);
+                File.WriteAllText("../../res/AstrandSession.json", JsonConvert.SerializeObject(sessions));
+                Console.WriteLine();
+            }
+
         }
     }
 }

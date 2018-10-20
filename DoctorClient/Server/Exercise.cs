@@ -63,7 +63,7 @@ namespace Server
                     StartTrainingSession();
                     break;
                 case 3:
-                    //CheckSteadyState();
+                    CheckSteadyState();
                     break;
                 case 4:
                     //StartCooldown();

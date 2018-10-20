@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Credentials\StringCipher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JSON\JsonConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JSON\JsonDataClasses.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\AstrandData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\AstrandSession.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Doctor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Patient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\TrainingSession.cs" />

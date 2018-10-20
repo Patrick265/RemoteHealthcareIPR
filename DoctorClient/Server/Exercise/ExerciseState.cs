@@ -11,9 +11,9 @@ namespace Server.Exercise
         #region Bike Data
         public Patient Patient;
         public string MachineName;
-        public double Rpm { get; set; }
-        public double Pulse { get; set; }
-        public double Power { get; set; }
+        public int Rpm { get; set; }
+        public int Pulse { get; set; }
+        public int Power { get; set; }
         public bool AllowData { get; set; }
         #endregion
 
@@ -27,9 +27,9 @@ namespace Server.Exercise
 
         public ExerciseState(NetworkStream bikeStream, NetworkStream doctorStream, Patient patient, string MachineName)
         {
-            this.DurationWarmUp = 120000;
-            this.DurationTrainingSession = 240000;
-            this.DurationCooldown = 60000;
+            this.DurationWarmUp = 15000;
+            this.DurationTrainingSession = 60000;
+            this.DurationCooldown = 15000;
             this.ExerciseConnection = new ExerciseConnection(bikeStream, doctorStream);
             this.MachineName = MachineName;
             this.Patient = patient;
@@ -44,15 +44,15 @@ namespace Server.Exercise
         /// I assume they mean the targetted watt and the average heartrate of the steadystart
         /// </summary>
         /// <returns></returns>
-        public double CalculateVO2Max()
+        public double CalculateVO2Max(double AverageHeartBeat)
         {
             if (this.Patient.male)
             {
-                return 5; //(0.00212 * this.Patient.TargettedWat + 0.299) / (0.769 * this.AvgSteadyStartHeartRate - 48.5) * 1000;
+                return ((0.00212 * (this.Patient.TargettedWatt * 6.1182972778676) + 0.299) / (0.769 * AverageHeartBeat - 48.5) * 100) * this.Patient.CorrectionFactor;
             }
             else
             {
-                return 5; // (0.00193 * this.Patient.TargettedWat + 0.326) / (0.769 * this.AvgSteadyStartHeartRate - 56.1) * 1000;
+                return  ((0.00193 * (this.Patient.TargettedWatt * 6.1182972778676)+ 0.326)  / (0.769 * AverageHeartBeat - 56.1) * 100) * this.Patient.CorrectionFactor;
             }
         }
 

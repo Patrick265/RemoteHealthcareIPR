@@ -22,7 +22,7 @@ namespace Server.Exercise.State
             this.timer = new Timer(DurationCooldown);
             this.timer.Elapsed += new ElapsedEventHandler(ChangeSession);
             this.timer.Enabled = true;
-            base.ExerciseConnection.SendChangeTime("0100", base.MachineName);
+            base.ExerciseConnection.SendChangeTime("0015", base.MachineName);
             base.ExerciseConnection.SendInfoDoctor("De cooldown is begonnen, fiets op een rustig tempo door", base.MachineName);
             base.ExerciseConnection.SendInfoBike("De cooldown is begonnen, fiets op een rustig tempo door");
             base.ExerciseConnection.sendChangePower(50, base.MachineName);

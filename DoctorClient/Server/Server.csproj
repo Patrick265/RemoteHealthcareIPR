@@ -63,6 +63,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="res\AstrandSession.json" />
     <None Include="res\PatientData.json" />
     <None Include="res\trainingsessions\07.06.1997-Tim de Vries.json" />
     <None Include="res\trainingsessions\10.11.1996-Tim de Booij.json" />
