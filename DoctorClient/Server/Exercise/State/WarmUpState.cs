@@ -22,7 +22,7 @@ namespace Server.Exercise.State
             this.timer = new Timer(DurationWarmUp);
             this.timer.Elapsed += new ElapsedEventHandler(ChangeSession);
             this.timer.Enabled = true;
-
+            base.ExerciseConnection.SendChangeTime("0015", base.MachineName);
             base.ExerciseConnection.SendInfoDoctor("Fiets 2 minuten lang op een rustig tempo", base.MachineName);
             base.ExerciseConnection.SendInfoBike("Fiets 2 minuten lang op een rustig tempo");
             base.ExerciseConnection.sendChangePower(50, base.MachineName);

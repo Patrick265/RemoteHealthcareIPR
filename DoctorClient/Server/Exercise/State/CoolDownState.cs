@@ -17,10 +17,12 @@ namespace Server.Exercise.State
 
         public override void Event(Context context)
         {
+            Console.WriteLine("IN COOLDOWN");
             this.Context = context;
-            this.timer = new Timer(DurationTrainingSession);
+            this.timer = new Timer(DurationCooldown);
             this.timer.Elapsed += new ElapsedEventHandler(ChangeSession);
             this.timer.Enabled = true;
+            base.ExerciseConnection.SendChangeTime("0007", base.MachineName);
             base.ExerciseConnection.SendInfoDoctor("De cooldown is begonnen, fiets op een rustig tempo door", base.MachineName);
             base.ExerciseConnection.SendInfoBike("De cooldown is begonnen, fiets op een rustig tempo door");
             base.ExerciseConnection.sendChangePower(50, base.MachineName);
@@ -28,6 +30,7 @@ namespace Server.Exercise.State
 
         public override void ChangeSession(object source, ElapsedEventArgs e)
         {
+            Console.WriteLine(DateTime.Now + " Changed To FinishState");
             this.timer.Stop();
             Console.WriteLine(DateTime.Now + " Changed To FinishState");
             this.Context.State = new FinishedState(base.ExerciseConnection.BikeStream, base.ExerciseConnection.DoctorStream, base.Patient, base.MachineName);

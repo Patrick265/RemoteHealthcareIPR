@@ -1,4 +1,6 @@
-﻿using System.Net.Sockets;
+﻿using System.Collections.Generic;
+using System;
+using System.Net.Sockets;
 using System.Timers;
 using Utils.Model;
 
@@ -25,9 +27,9 @@ namespace Server.Exercise
 
         public ExerciseState(NetworkStream bikeStream, NetworkStream doctorStream, Patient patient, string MachineName)
         {
-            this.DurationWarmUp = 10000;
-            this.DurationTrainingSession = 10000;
-            this.DurationCooldown = 10000;
+            this.DurationWarmUp = 15000;
+            this.DurationTrainingSession = 30000;
+            this.DurationCooldown = 7000;
             this.ExerciseConnection = new ExerciseConnection(bikeStream, doctorStream);
             this.MachineName = MachineName;
             this.Patient = patient;
@@ -37,5 +39,21 @@ namespace Server.Exercise
         public abstract void Event(Context context);
 
         public abstract void ChangeSession(object source, ElapsedEventArgs e);
+
+        /// <summary>
+        /// I assume they mean the targetted watt and the average heartrate of the steadystart
+        /// </summary>
+        /// <returns></returns>
+        public double CalculateVO2Max()
+        {
+            if (this.Patient.male)
+            {
+                return 5; //(0.00212 * this.Patient.TargettedWat + 0.299) / (0.769 * this.AvgSteadyStartHeartRate - 48.5) * 1000;
+            }
+            else
+            {
+                return 5; // (0.00193 * this.Patient.TargettedWat + 0.326) / (0.769 * this.AvgSteadyStartHeartRate - 56.1) * 1000;
+            }
+        }
     }
 }

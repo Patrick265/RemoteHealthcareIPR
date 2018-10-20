@@ -14,6 +14,7 @@ namespace Utils.Model
         public bool male { get; set; }
         public int TargettedWat { get; set; }
         public int age { get; set; }
+        public int MaxHeartRate { get; set; } 
 
         public Patient(string name, float weight, int height, string date, List<TrainingSession> trainingSessions, bool male)
         {
@@ -24,10 +25,9 @@ namespace Utils.Model
             this.male = male;
             this.TrainingSessions = trainingSessions;
             this.male = male;
-
-
-
-            
+            GenerateTargetedWatt();
+            CalculateAge();
+            CalcMaxHeartRate();
         }
 
         public Patient()
@@ -77,6 +77,39 @@ namespace Utils.Model
             DateTime time = new DateTime(year, month, day);
             this.age = DateTime.Now.Year - time.Year;
         }
+
+        public void CalcMaxHeartRate()
+        {
+            if(this.age <= 24)
+            {
+                this.MaxHeartRate = 210;
+            } 
+            if(this.age >= 25 && this.age < 35)
+            {
+                this.MaxHeartRate = 200;
+            }
+            if (this.age >= 35 && this.age < 40)
+            {
+                this.MaxHeartRate = 190;
+            }
+            if (this.age >= 40 && this.age < 45)
+            {
+                this.MaxHeartRate = 180;
+            }
+            if (this.age >= 45 && this.age < 50)
+            {
+                this.MaxHeartRate = 170;
+            }
+            if (this.age >= 50 && this.age < 55)
+            {
+                this.MaxHeartRate = 160;
+            }
+            if (this.age >= 55)
+            {
+                this.MaxHeartRate = 150;
+            }
+        }
+
         public override string ToString()
         {
             return $"Patient: \nName: {this.name}\nWeight: {this.weight}\nHeight: {this.height}\nDate: {this.date}\nAge: {this.age}";

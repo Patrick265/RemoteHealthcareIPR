@@ -35,6 +35,7 @@ namespace Server
             Patrick.male = true;
             Patrick.CalculateAge();
             Patrick.GenerateTargetedWatt();
+            Patrick.CalcMaxHeartRate();
 
             Patient Tom = new Patient();
 			Tom.date = new DateTime(1997, 9, 24).ToString("d",
@@ -45,6 +46,7 @@ namespace Server
             Tom.male = true;
             Tom.CalculateAge();
             Tom.GenerateTargetedWatt();
+            Tom.CalcMaxHeartRate();
 
             Patient Gerdtinus = new Patient();
 			Gerdtinus.date = new DateTime(1995, 12, 21).ToString("d",
@@ -55,7 +57,8 @@ namespace Server
             Gerdtinus.male = true;
             Gerdtinus.CalculateAge();
             Gerdtinus.GenerateTargetedWatt();
-            
+            Gerdtinus.CalcMaxHeartRate();
+
 
             Patient TimB = new Patient();
 			TimB.date = new DateTime(1996, 10, 11).ToString("d",
@@ -66,6 +69,7 @@ namespace Server
             TimB.male = true;
             TimB.CalculateAge();
             TimB.GenerateTargetedWatt();
+            TimB.CalcMaxHeartRate();
 
             Patient TimV = new Patient();
 			TimV.date = new DateTime(1997, 6, 7).ToString("d",
@@ -76,6 +80,7 @@ namespace Server
             TimV.male = true;
             TimV.CalculateAge();
             TimV.GenerateTargetedWatt();
+            TimV.CalcMaxHeartRate();
 
             Patient Renske = new Patient();
 			Renske.date = new DateTime(1999, 3, 11).ToString("d",
@@ -86,7 +91,7 @@ namespace Server
             Renske.male = false;
             Renske.CalculateAge();
             Renske.GenerateTargetedWatt();
-
+            Renske.CalcMaxHeartRate();
 
 
             this.PatientsInfo.Add(Patrick);
