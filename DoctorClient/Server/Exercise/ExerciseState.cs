@@ -55,5 +55,20 @@ namespace Server.Exercise
                 return 5; // (0.00193 * this.Patient.TargettedWat + 0.326) / (0.769 * this.AvgSteadyStartHeartRate - 56.1) * 1000;
             }
         }
+
+        public void CheckRPM()
+        {
+            Console.WriteLine("CHECKING THE GODDAMN RPM!!!!!");
+            if (this.Rpm < 50)
+            {
+                this.ExerciseConnection.SendInfoBike("U fietst niet hard genoeg, probeer rond de 60 rpm te blijven");
+                this.ExerciseConnection.SendInfoDoctor("De patient fietst te zacht en heeft een waarschuwing gekregen", this.MachineName);
+            }
+            if (this.Rpm > 70)
+            {
+                this.ExerciseConnection.SendInfoBike("U fietst te snel, probeer rond de 60 rpm te blijven");
+                this.ExerciseConnection.SendInfoDoctor("De patient fietst te hard en heeft een waarschuwing gekregen", this.MachineName);
+            }
+        }
     }
 }

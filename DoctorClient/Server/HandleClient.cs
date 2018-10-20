@@ -287,6 +287,7 @@ namespace Server
                 int rpm = jsonRecieve.data.RPM;
                 Server.exercise.State.Pulse = pulse;
                 Server.exercise.State.Rpm = rpm / 10;
+                Server.exercise.State.CheckRPM();
             }
 			string doctorId = "doctor";
 			string json = JsonConvert.SerializeObject(jsonRecieve);

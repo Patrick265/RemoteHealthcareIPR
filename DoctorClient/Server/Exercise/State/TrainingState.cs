@@ -14,26 +14,22 @@ namespace Server.Exercise.State
         private int Counter;
         private Dictionary<DateTime, double> PulseSecond;
         private Dictionary<DateTime, double> PulseMinute;
-        private bool RetrieveMinute;
-
 
         public TrainingState(NetworkStream bikeStream, NetworkStream doctorStream, Patient Patient, string MachineName) :
             base(bikeStream, doctorStream, Patient, MachineName)
         {
             this.Counter = 0;
-            this.RetrieveMinute = true;
             this.PulseSecond = new Dictionary<DateTime, double>();
             this.PulseMinute = new Dictionary<DateTime, double>();
+            this.Timer = new Timer(DurationTrainingSession);
+            this.PulseTimer = new Timer(15000);
         }
 
         public override void Event(Context context)
         {
             this.Context = context;
-            this.Timer = new Timer(DurationTrainingSession);
             this.Timer.Elapsed += new ElapsedEventHandler(ChangeSession);
             this.Timer.Enabled = true;
-
-            this.PulseTimer = new Timer(15000);
             this.PulseTimer.Elapsed += new ElapsedEventHandler(DataRetriever);
             this.PulseTimer.Enabled = true;
 
@@ -47,7 +43,6 @@ namespace Server.Exercise.State
         {
             this.PulseTimer.Stop();
             this.Timer.Stop();
-
             Console.WriteLine("MINUTE: " + this.PulseMinute.Count);
             Console.WriteLine("SECOND: " + this.PulseSecond.Count);
             this.Context.State = new CoolDownState(base.ExerciseConnection.BikeStream, base.ExerciseConnection.DoctorStream, base.Patient, base.MachineName);
@@ -57,7 +52,6 @@ namespace Server.Exercise.State
 
         public void DataRetriever(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("COUNTER: " + this.Counter);
             if(base.Pulse > base.Patient.MaxHeartRate)
             {
                 this.PulseTimer.Stop();
@@ -65,19 +59,22 @@ namespace Server.Exercise.State
                 this.Context.State = new FinishedState(base.ExerciseConnection.BikeStream, base.ExerciseConnection.DoctorStream, base.Patient, base.MachineName);
                 this.Context.Request();
             }
-            if (this.Counter == 3 || this.Counter == 7 && this.RetrieveMinute)
+            if (this.Counter == 3 || this.Counter == 7)
             {
-                
                 this.PulseMinute.Add(DateTime.Now, base.Pulse);
-                Console.WriteLine("COUNTER: " + this.Counter + "\tPulse:" + base.Pulse + "\tDATE: " + DateTime.Now);
             }
             if(this.Counter > 7 )
             {
-                
                 this.PulseSecond.Add(DateTime.Now, base.Pulse);
-                Console.WriteLine("COUNTER: " + this.Counter + "\tPulse:" + base.Pulse + "\tDATE: " + DateTime.Now);
             }
             this.Counter++;
+        }
+
+
+
+        public void GetAverageHeartRate()
+        {
+            throw new NotImplementedException();
         }
     }
 }
