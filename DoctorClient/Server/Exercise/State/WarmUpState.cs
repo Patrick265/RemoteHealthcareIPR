@@ -25,6 +25,7 @@ namespace Server.Exercise.State
 
             base.ExerciseConnection.SendInfoDoctor("Fiets 2 minuten lang op een rustig tempo", base.MachineName);
             base.ExerciseConnection.SendInfoBike("Fiets 2 minuten lang op een rustig tempo");
+            base.ExerciseConnection.sendChangePower(50, base.MachineName);
         }
 
         public override void ChangeSession(object source, ElapsedEventArgs e)

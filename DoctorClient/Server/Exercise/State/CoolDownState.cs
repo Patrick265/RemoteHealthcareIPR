@@ -23,6 +23,7 @@ namespace Server.Exercise.State
             this.timer.Enabled = true;
             base.ExerciseConnection.SendInfoDoctor("De cooldown is begonnen, fiets op een rustig tempo door", base.MachineName);
             base.ExerciseConnection.SendInfoBike("De cooldown is begonnen, fiets op een rustig tempo door");
+            base.ExerciseConnection.sendChangePower(50, base.MachineName);
         }
 
         public override void ChangeSession(object source, ElapsedEventArgs e)

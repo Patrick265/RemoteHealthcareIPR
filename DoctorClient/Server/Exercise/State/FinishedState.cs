@@ -15,8 +15,10 @@ namespace Server.Exercise.State
         public override void Event(Context context)
         {
             Console.WriteLine("In finished state");
+            base.AllowData = false;
             base.ExerciseConnection.SendInfoDoctor("De test is afgelopen!", base.MachineName);
             base.ExerciseConnection.SendInfoBike("De test is afgelopen!");
+            base.ExerciseConnection.sendChangePower(25, base.MachineName);
         }
 
         public override void ChangeSession(object source, ElapsedEventArgs e)

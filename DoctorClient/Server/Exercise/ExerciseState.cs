@@ -12,6 +12,7 @@ namespace Server.Exercise
         public double Rpm { get; set; }
         public double Pulse { get; set; }
         public double Power { get; set; }
+        public bool AllowData { get; set; }
         #endregion
 
         #region Duration Sessions
@@ -24,12 +25,13 @@ namespace Server.Exercise
 
         public ExerciseState(NetworkStream bikeStream, NetworkStream doctorStream, Patient patient, string MachineName)
         {
-            this.DurationWarmUp = 2000;
-            this.DurationTrainingSession = 2000;
-            this.DurationCooldown = 2000;
+            this.DurationWarmUp = 10000;
+            this.DurationTrainingSession = 10000;
+            this.DurationCooldown = 10000;
             this.ExerciseConnection = new ExerciseConnection(bikeStream, doctorStream);
             this.MachineName = MachineName;
             this.Patient = patient;
+            this.AllowData = true;
         }
 
         public abstract void Event(Context context);

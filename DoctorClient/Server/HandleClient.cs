@@ -280,7 +280,7 @@ namespace Server
 		private void AddDataBikeInfo(dynamic jsonRecieve)
         {
             string name = jsonRecieve.name;
-            if (Server.exercise != null && Server.exercise.State.MachineName == name) 
+            if (Server.exercise != null && Server.exercise.State.MachineName == name && Server.exercise.State.AllowData) 
             {
                 string time = jsonRecieve.data.time;
                 int pulse = jsonRecieve.data.pulse;
@@ -290,7 +290,7 @@ namespace Server
             }
 			string doctorId = "doctor";
 			string json = JsonConvert.SerializeObject(jsonRecieve);
-			if (this.clientList.ContainsKey(doctorId))
+			if (this.clientList.ContainsKey(doctorId) && Server.exercise != null && Server.exercise.State.AllowData)
 			{
 				NetworkStream doctorStream = this.clientList[doctorId].Stream;
 				ConnectionUtils.SendMessage(doctorStream, json);

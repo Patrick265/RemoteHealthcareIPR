@@ -23,6 +23,7 @@ namespace Server.Exercise.State
            this.timer.Enabled = true;
             base.ExerciseConnection.SendInfoDoctor("De trainingsessie is begonnen, fiets met een RPM van 60!", base.MachineName);
             base.ExerciseConnection.SendInfoBike("De trainingsessie is begonnen, fiets met een RPM van 60!");
+            base.ExerciseConnection.sendChangePower(base.Patient.TargettedWat, base.MachineName);
         }
 
         public override void ChangeSession(object source, ElapsedEventArgs e)
