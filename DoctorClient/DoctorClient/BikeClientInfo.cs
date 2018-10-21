@@ -112,15 +112,15 @@ namespace DoctorClient
         {
           
             doctor.GetOldData(patientName);
-            if (patient == null)
-            {
-                MessageBox.Show("This patient doensn't have older sessions!");
-            }
-            else
-            {
-                f2 = new Form2(patientName, date, doctor, patient);
+            //if (patient == null)
+            //{
+            //    MessageBox.Show("This patient doensn't have older sessions!");
+            //}
+            //else
+            //{
+                f2 = new Form2(doctor, patient);
                 f2.Show();
-            }
+            //}
         }
 
  
