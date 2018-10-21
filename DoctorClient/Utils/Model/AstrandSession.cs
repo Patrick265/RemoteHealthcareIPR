@@ -23,5 +23,10 @@ namespace Utils.Model
             this.date = date;
             this.data = new List<AstrandData>();
         }
+
+        public AstrandSession()
+        {
+
+        }
     }
 }
