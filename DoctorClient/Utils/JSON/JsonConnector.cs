@@ -503,11 +503,12 @@ public class JsonConnector
         return bm;
     }
 
-    public dynamic SendMessage(string message)
+    public dynamic SendMessage(string message, int value)
     {
-        RootObjectBroadcast bm = new RootObjectBroadcast();
+        dynamic bm = new JObject();
         bm.id = "Message";
         bm.message = message;
+        bm.value = value;
         return bm;
     }
 
@@ -623,12 +624,13 @@ public class JsonConnector
         return test;
     }
 
-    public dynamic SendDocAstrandInfo(string infor, string name)
+    public dynamic SendDocAstrandInfo(string infor, string name, int value)
     {
         dynamic info = new JObject();
         info.id = "Astrand";
         info.info = infor;
         info.name = name;
+        info.value = value;
         return info;
     }
 
@@ -637,5 +639,14 @@ public class JsonConnector
         dynamic stop = new JObject();
         stop.id = "StopAstrand";
         return stop;
+    }
+
+    public dynamic SendTime(string time, string machineName)
+    {
+        dynamic timeS = new JObject();
+        timeS.id = "Time";
+        timeS.time = time;
+        timeS.name = machineName;
+        return timeS;
     }
 }

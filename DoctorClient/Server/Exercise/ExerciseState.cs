@@ -61,13 +61,18 @@ namespace Server.Exercise
             //Console.WriteLine("CHECKING THE GODDAMN RPM!!!!!");
             if (this.Rpm < 50)
             {
-                this.ExerciseConnection.SendInfoBike("U fietst niet hard genoeg, probeer rond de 60 rpm te blijven");
-                this.ExerciseConnection.SendInfoDoctor("De patient fietst te zacht en heeft een waarschuwing gekregen", this.MachineName);
+                this.ExerciseConnection.SendInfoBike("U fietst niet hard genoeg, probeer" + Environment.NewLine + "rond de 60 rpm te blijven", 2);
+                this.ExerciseConnection.SendInfoDoctor("De patient fietst te zacht en heeft een waarschuwing gekregen", this.MachineName, 2);
             }
-            if (this.Rpm > 70)
+            else if (this.Rpm > 70)
             {
-                this.ExerciseConnection.SendInfoBike("U fietst te snel, probeer rond de 60 rpm te blijven");
-                this.ExerciseConnection.SendInfoDoctor("De patient fietst te hard en heeft een waarschuwing gekregen", this.MachineName);
+                this.ExerciseConnection.SendInfoBike("U fietst te snel, probeer rond de" + Environment.NewLine + "60 rpm te blijven", 2);
+                this.ExerciseConnection.SendInfoDoctor("De patient fietst te hard en heeft een waarschuwing gekregen", this.MachineName, 2);
+            }
+            else
+            {
+                this.ExerciseConnection.SendInfoBike("", 2);
+                this.ExerciseConnection.SendInfoDoctor("", this.MachineName, 2);
             }
         }
     }

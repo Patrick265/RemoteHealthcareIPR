@@ -17,10 +17,11 @@ namespace Server.Exercise.State
         {
             Console.WriteLine("In finished state");
             base.AllowData = false;
-
+            ExerciseConnection.SendTimeBike("00:00", MachineName);
+            ExerciseConnection.SendTimeDoctor("00:00", MachineName);
             base.ExerciseConnection.SendChangeTime("0000", base.MachineName);
-            base.ExerciseConnection.SendInfoDoctor("De test is afgelopen!", base.MachineName);
-            base.ExerciseConnection.SendInfoBike("De test is afgelopen!");
+            base.ExerciseConnection.SendInfoDoctor("De test is afgelopen!", base.MachineName, 1);
+            base.ExerciseConnection.SendInfoBike("De test is afgelopen!", 1);
             base.ExerciseConnection.sendChangePower(25, base.MachineName);
         }
 

@@ -15,8 +15,10 @@ using Utils.Connection.Client;
 using Utils.Connection;
 using Label = System.Windows.Forms.Label;
 using Newtonsoft.Json.Linq;
-using Utils.Model;
+//using Utils.Model;
 using Utils.Credentials;
+using Utils.Model;
+
 
 namespace DoctorClient
 {
@@ -32,11 +34,11 @@ namespace DoctorClient
         private Label errorLabel;
         private LoginForm login;
         private Form1 form;
+        
         public List<AstrandSession> AstrandSessions { get; set; }
         public List<string> machineNames;
         private List<Patient> patientNames;
         public Patient patient { get; set; }
-
         private RootObjectSendBikeInfo _bikeData;
         public event EventHandler bikeDataChanged;
 
@@ -183,9 +185,14 @@ namespace DoctorClient
                     case "Astrand":
                         string AInfo = jsonReceive.info;
                         string AName = jsonReceive.name;
-                        AvansAstrand.SetInfo(AInfo, AName);
+                        int value = jsonReceive.value;
+                        AvansAstrand.SetInfo(AInfo, AName, value);
                         break;
-
+                    case "Time":
+                        string time = jsonReceive.time;
+                        string TName = jsonReceive.name;
+                        AvansAstrand.SetTime(time, TName);
+                        break;
                 }
             }
         }

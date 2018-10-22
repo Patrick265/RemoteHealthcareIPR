@@ -103,7 +103,7 @@ namespace Server
 							string name = jsonReceive.name;
 							NetworkStream streamP = clientList[name].Stream;
 							string messageP = jsonReceive.message;
-							string json = jsonConnector.getJson(jsonConnector.SendMessage(messageP));
+							string json = jsonConnector.getJson(jsonConnector.SendMessage(messageP, 1));
 							ConnectionUtils.SendMessage(streamP, json);
 							break;
 						case "EmergencyStop":
@@ -163,7 +163,7 @@ namespace Server
 		private void Broadcast(dynamic jsonRecieve)
 		{
 			string message = jsonRecieve.message;
-			string json = jsonConnector.getJson(jsonConnector.SendMessage(message));
+			string json = jsonConnector.getJson(jsonConnector.SendMessage(message, 1));
 			foreach (KeyValuePair<string, HandleClient> client in clientList)
 			{
 				ConnectionUtils.SendMessage(client.Value.Client.GetStream(), json);
@@ -293,7 +293,7 @@ namespace Server
             {
                 string time = jsonRecieve.data.time;
                 int pulse = jsonRecieve.data.pulse;
-                int rpm = jsonRecieve.data.RPM;
+                int rpm = jsonRecieve.data.RPM/100;
                 Server.exercise.State.Pulse = jsonRecieve.data.pulse;
                 Console.WriteLine("RPM" + rpm);
                 Server.exercise.State.Rpm = rpm;

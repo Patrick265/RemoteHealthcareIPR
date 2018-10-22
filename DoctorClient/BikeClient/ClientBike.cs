@@ -40,43 +40,63 @@ namespace BikeClient
             Console.WriteLine("started listening");
             while (true)
             {
-                dynamic jsonRecieve = JsonConvert.DeserializeObject(ConnectionUtils.ReadMessage(stream));
-                string id = jsonRecieve.id;
-                switch (id)
+                try
                 {
-                    case "Ack":
-                        Console.WriteLine("Bike added");
-                        break;
-                    case "Change":
-                        int distance = jsonRecieve.data.distance;
-                        int requestedPower = jsonRecieve.data.requestedPower;
-                        string time = jsonRecieve.data.time;
-                        SimulatorGUI.ChangeBikeValues(distance, requestedPower, time);
-                        break;
-                    case "ChangeTime":
-                        Console.WriteLine("Changed time");
-                        string timeChange = jsonRecieve.time;
-                        SimulatorGUI.ChangeTime(timeChange);
-                        break;
-                    case "ChangePower":
-                        int rqPower = jsonRecieve.requestedPower;
-                        SimulatorGUI.ChangePower(rqPower);
-                        break;
-                    case "Message":
-                        string message = jsonRecieve.message;
-                        Console.WriteLine("Recieved message: " + message);
-                        SimulatorGUI.tempMessage = message;
-                        break;
-                    case "PersonalMessage":
-                        string messageP = jsonRecieve.message;
-                        Console.WriteLine("Personal message: " + messageP);
-                        SimulatorGUI.tempMessage = messageP;
-                        break;
-                    case "EmergencyStop":
-                        Console.WriteLine("Emergency stop!");
-                        SimulatorGUI.ChangeBikeValues(25);
-                        SimulatorGUI.emergencyStop = true;
-                        break;
+                    dynamic jsonRecieve = JsonConvert.DeserializeObject(ConnectionUtils.ReadMessage(stream));
+                    string id = jsonRecieve.id;
+                    switch (id)
+                    {
+                        case "Ack":
+                            Console.WriteLine("Bike added");
+                            break;
+                        case "Change":
+                            int distance = jsonRecieve.data.distance;
+                            int requestedPower = jsonRecieve.data.requestedPower;
+                            string time = jsonRecieve.data.time;
+                            SimulatorGUI.ChangeBikeValues(distance, requestedPower, time);
+                            break;
+                        case "ChangeTime":
+                            Console.WriteLine("Changed time");
+                            string timeChange = jsonRecieve.time;
+                            SimulatorGUI.ChangeTime(timeChange);
+                            break;
+                        case "ChangePower":
+                            int rqPower = jsonRecieve.requestedPower;
+                            SimulatorGUI.ChangePower(rqPower);
+                            break;
+                        case "Message":
+                            Console.WriteLine("JSON: " + jsonRecieve);
+                            string message = jsonRecieve.message;
+                            int value = jsonRecieve.value;
+                            Console.WriteLine("Recieved message: " + message);
+                            if (value == 1)
+                            {
+                                SimulatorGUI.tempMessage = message;
+                            }
+                            else
+                            {
+                                SimulatorGUI.warningMessage = message;
+                            }
+                            break;
+                        case "PersonalMessage":
+                            string messageP = jsonRecieve.message;
+                            Console.WriteLine("Personal message: " + messageP);
+                            SimulatorGUI.tempMessage = messageP;
+                            break;
+                        case "EmergencyStop":
+                            Console.WriteLine("Emergency stop!");
+                            SimulatorGUI.ChangeBikeValues(25);
+                            SimulatorGUI.emergencyStop = true;
+                            break;
+                        case "Time":
+                            string timeT = jsonRecieve.time;
+                            SimulatorGUI.time = timeT;
+                            break;
+                    }
+                }
+                catch(Exception e)
+                {
+
                 }
             }
         }

@@ -19,6 +19,7 @@ namespace BikeClient
         private Dictionary<String, String> dict = new Dictionary<string, string>();
         private String dest = "";
         public static string tempMessage;
+        public static string warningMessage;
         private Client client;
         private ClientBike cb;
         private int oldResultS = 99;
@@ -28,6 +29,7 @@ namespace BikeClient
         private double lastY = 0;
         private double lastZ = 0;
         private static bool isDoctorOverwrite = false;
+        public static string time = "";
 
         public SimulatorGUI()
         {
@@ -70,6 +72,11 @@ namespace BikeClient
         }
 
         public void ShowMessage() => txbJSON.Text = tempMessage;
+
+        public void ShowWarning()
+        {
+            labelWarning.Text = warningMessage;
+        }
 
         public static void ChangeBikeValues(int requestedPower) => bicycle.RequestPower(requestedPower, emergencyStop);
 
@@ -122,13 +129,14 @@ namespace BikeClient
                     {
                         lblDistance.Text = $"{Convert.ToInt32(dict["distance"]) / 10.0} km";
                         lblRequestedPower.Text = $"{Convert.ToInt32(dict["requested_power"])} W";
-                        lblTime.Text = $"{dict["mmss"]}";
+                        lblTime.Text = time;
                         lblPower.Text = $"{dict["actual_power"]}";
                         lblPulse.Text = $"{dict["pulse"]}";
                         lblRPM.Text = $"{dict["rpm"]}";
                         lblSpeed.Text = $"{Convert.ToInt32(dict["speed"]) / 10.0} km/h";
                         lblEnergy.Text = $"{dict["energy"]} W";
                         ShowMessage();
+                        ShowWarning();
                     }));
                     cb.SendBikeInfo(Convert.ToInt32(dict["speed"]) / 10, Convert.ToInt32(dict["distance"]) / 10.0, Convert.ToInt32(lblPower.Text), Convert.ToInt32(dict["requested_power"]), lblTime.Text, Convert.ToInt32(dict["rpm"]), Convert.ToInt32(dict["pulse"]), lblEnergy.Text);
 

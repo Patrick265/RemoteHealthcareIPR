@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Timers;
 using Utils.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Server.Exercise.State
 {
@@ -11,6 +13,7 @@ namespace Server.Exercise.State
     {
         private Context Context;
         private Timer Timer;
+        private Timer TimerInfo;
         private Timer PulseTimer;
         private Timer BuildToTargetTimer;
         private int Counter;
@@ -18,17 +21,21 @@ namespace Server.Exercise.State
         private List<int> PulseMinute;
         private bool RetrySteadyState;
         private AstrandSession Session;
+        private int Time;
 
         public TrainingState(NetworkStream bikeStream, NetworkStream doctorStream, Patient Patient, string MachineName) :
             base(bikeStream, doctorStream, Patient, MachineName)
         {
             this.Counter = 0;
             this.RetrySteadyState = true;
-
+            this.Time = 240;
             this.PulseSecond = new List<int>();
             this.PulseMinute = new List<int>();
 
             this.Timer = new Timer(DurationTrainingSession);
+            this.TimerInfo = new Timer(1000);
+            this.TimerInfo.Elapsed += GetTime;
+            this.TimerInfo.Enabled = true;
             Console.WriteLine("DURATION : " + DurationTrainingSession);
             this.PulseTimer = new Timer(15000);
             this.BuildToTargetTimer = new Timer(3000);
@@ -49,14 +56,15 @@ namespace Server.Exercise.State
 
             base.Power = 50;
             base.ExerciseConnection.SendChangeTime("0400", base.MachineName);
-            base.ExerciseConnection.SendInfoDoctor("De trainingsessie is begonnen, fiets met een RPM van 60!", base.MachineName);
-            base.ExerciseConnection.SendInfoBike("De trainingsessie is begonnen, fiets met een RPM van 60!");
+            base.ExerciseConnection.SendInfoDoctor("De trainingsessie is begonnen, fiets met een RPM van 60!", base.MachineName, 1);
+            base.ExerciseConnection.SendInfoBike("De trainingsessie is begonnen, fiets met een RPM van 60!", 1);
             //base.ExerciseConnection.sendChangePower(base.Patient.TargettedWatt, base.MachineName);
         }
 
         public override void ChangeSession(object source, ElapsedEventArgs e)
         {
             Console.WriteLine("CHANGING THE SESSION");
+            this.TimerInfo.Stop();
             this.PulseTimer.Stop();
             this.Timer.Stop();
             this.BuildToTargetTimer.Stop();
@@ -75,14 +83,15 @@ namespace Server.Exercise.State
 
                 this.RetrySteadyState = false;
                 base.ExerciseConnection.SendChangeTime("0400", base.MachineName);
-                base.ExerciseConnection.SendInfoDoctor("De steady state is niet gehaald, de training gaat door met een extra 2 minuten!", base.MachineName);
-                base.ExerciseConnection.SendInfoBike("De steady state is niet gehaald, de training gaat door met een extra 2 minuten");
+                this.Time = 120;
+                base.ExerciseConnection.SendInfoDoctor("De steady state is niet gehaald, de training gaat door met een extra 2 minuten!", base.MachineName, 1);
+                base.ExerciseConnection.SendInfoBike("De steady state is niet gehaald, de training gaat door met een extra 2 minuten", 1);
             }
             else if (CheckValues())
             {
                 base.ExerciseConnection.WriteSessionToFile(this.Session);
-                base.ExerciseConnection.SendInfoDoctor($"Er kan geen Vo2Max berekend worden, het verschil tussen de hartslag was te groot. Max hartslag: {this.PulseSecond.Min()} Min hartslag {this.PulseSecond.Max()}", base.MachineName);
-                base.ExerciseConnection.SendInfoBike($"Er kan geen Vo2Max berekend worden, het verschil tussen de hartslag was te groot. Max hartslag: {this.PulseSecond.Min()} Min hartslag {this.PulseSecond.Max()}");
+                base.ExerciseConnection.SendInfoDoctor($"Er kan geen Vo2Max berekend worden, het verschil tussen de hartslag was te groot. Max hartslag: {this.PulseSecond.Min()} Min hartslag {this.PulseSecond.Max()}", base.MachineName, 1);
+                base.ExerciseConnection.SendInfoBike($"Er kan geen Vo2Max berekend worden, het verschil tussen de hartslag was te groot. Max hartslag: {this.PulseSecond.Min()} Min hartslag {this.PulseSecond.Max()}", 1);
                 this.Context.State = new CoolDownState(base.ExerciseConnection.BikeStream, base.ExerciseConnection.DoctorStream, base.Patient, base.MachineName);
                 this.Context.Request();
                 Console.WriteLine(DateTime.Now + " Changed To Cooldown");
@@ -169,12 +178,19 @@ namespace Server.Exercise.State
             }
         }
 
+        public void GetTime(Object source, ElapsedEventArgs e)
+        {
+            string timeString = ExerciseConnection.secondsTommss(this.Time);
+            ExerciseConnection.SendTimeBike(timeString, MachineName);
+            ExerciseConnection.SendTimeDoctor(timeString, MachineName);
+            this.Time--;
+        }
 
         public void BuildToTarget(Object source, ElapsedEventArgs e)
         {
             if (base.Power < base.Patient.TargettedWatt)
             {
-                base.ExerciseConnection.SendInfoBike($"De weerstand is verhoogd naar { base.Power + 5}");
+                base.ExerciseConnection.SendInfoBike($"De weerstand is verhoogd naar { base.Power + 5}", 1);
                 base.Power = base.Power + 5;
                 base.ExerciseConnection.sendChangePower(base.Power, base.MachineName);
             }

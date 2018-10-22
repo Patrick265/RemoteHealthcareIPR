@@ -57,6 +57,8 @@
             this.btnSendAndReceive = new System.Windows.Forms.Button();
             this.txbJSON = new System.Windows.Forms.RichTextBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labelWarning = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -250,7 +252,7 @@
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.MinimumSize = new System.Drawing.Size(320, 60);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(320, 60);
+            this.label13.Size = new System.Drawing.Size(339, 60);
             this.label13.TabIndex = 18;
             this.label13.Text = "Selecteer verbinding:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -265,7 +267,7 @@
             this.cmbPorts.Margin = new System.Windows.Forms.Padding(4);
             this.cmbPorts.MinimumSize = new System.Drawing.Size(370, 0);
             this.cmbPorts.Name = "cmbPorts";
-            this.cmbPorts.Size = new System.Drawing.Size(370, 46);
+            this.cmbPorts.Size = new System.Drawing.Size(370, 56);
             this.cmbPorts.TabIndex = 19;
             this.cmbPorts.SelectedIndexChanged += new System.EventHandler(this.CmbPorts_SelectedIndexChanged);
             // 
@@ -336,7 +338,7 @@
             this.txtDistance.Location = new System.Drawing.Point(370, 121);
             this.txtDistance.MinimumSize = new System.Drawing.Size(4, 50);
             this.txtDistance.Name = "txtDistance";
-            this.txtDistance.Size = new System.Drawing.Size(129, 38);
+            this.txtDistance.Size = new System.Drawing.Size(129, 45);
             this.txtDistance.TabIndex = 24;
             // 
             // btnDistance
@@ -369,7 +371,7 @@
             this.txtTime.Location = new System.Drawing.Point(369, 242);
             this.txtTime.MinimumSize = new System.Drawing.Size(4, 50);
             this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(129, 38);
+            this.txtTime.Size = new System.Drawing.Size(129, 45);
             this.txtTime.TabIndex = 26;
             // 
             // btnRequestedPower
@@ -390,7 +392,7 @@
             this.txtRequestedPower.Location = new System.Drawing.Point(369, 181);
             this.txtRequestedPower.MinimumSize = new System.Drawing.Size(4, 50);
             this.txtRequestedPower.Name = "txtRequestedPower";
-            this.txtRequestedPower.Size = new System.Drawing.Size(129, 38);
+            this.txtRequestedPower.Size = new System.Drawing.Size(129, 45);
             this.txtRequestedPower.TabIndex = 28;
             // 
             // txtCommand
@@ -398,7 +400,7 @@
             this.txtCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtCommand.Location = new System.Drawing.Point(761, 18);
             this.txtCommand.Name = "txtCommand";
-            this.txtCommand.Size = new System.Drawing.Size(244, 38);
+            this.txtCommand.Size = new System.Drawing.Size(244, 45);
             this.txtCommand.TabIndex = 30;
             // 
             // btnSend
@@ -438,18 +440,40 @@
             this.trackBar1.Location = new System.Drawing.Point(761, 553);
             this.trackBar1.Maximum = 24;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(489, 45);
+            this.trackBar1.Size = new System.Drawing.Size(489, 56);
             this.trackBar1.TabIndex = 36;
             this.trackBar1.Value = 12;
             this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(802, 387);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 15);
+            this.label4.TabIndex = 37;
+            // 
+            // labelWarning
+            // 
+            this.labelWarning.AutoSize = true;
+            this.labelWarning.BackColor = System.Drawing.Color.White;
+            this.labelWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWarning.Location = new System.Drawing.Point(763, 385);
+            this.labelWarning.MinimumSize = new System.Drawing.Size(450, 80);
+            this.labelWarning.Name = "labelWarning";
+            this.labelWarning.Size = new System.Drawing.Size(450, 80);
+            this.labelWarning.TabIndex = 38;
+            this.labelWarning.UseWaitCursor = true;
+            // 
             // SimulatorGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1270, 625);
+            this.Controls.Add(this.labelWarning);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.txbJSON);
             this.Controls.Add(this.btnSendAndReceive);
@@ -520,6 +544,8 @@
         private System.Windows.Forms.Button btnSendAndReceive;
         private System.Windows.Forms.RichTextBox txbJSON;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelWarning;
     }
 }
 

@@ -124,7 +124,7 @@ namespace BikeClient
             Dictionary<String, String> data = new Dictionary<String, String>
             {
                 { "pulse", pulse.ToString() },
-                { "rpm", RPM.ToString() },
+                { "rpm", (RPM/10).ToString() },
                 { "speed", speed.ToString() },
                 { "distance", Math.Floor(distance * 10).ToString() },
                 { "requested_power", requestedPower.ToString() },

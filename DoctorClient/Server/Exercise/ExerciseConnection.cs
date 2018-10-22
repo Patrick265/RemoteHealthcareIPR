@@ -38,18 +38,29 @@ namespace Server.Exercise
             ConnectionUtils.SendMessage(this.BikeStream, message);
         }
 
-        public void SendInfoBike(string info)
+        public void SendInfoBike(string info, int value)
         {
-            string json = jc.getJson(jc.SendMessage(info));
+            string json = jc.getJson(jc.SendMessage(info, value));
             ConnectionUtils.SendMessage(this.BikeStream, json);
         }
 
-        public void SendInfoDoctor(string info, string machineName)
+        public void SendInfoDoctor(string info, string machineName, int value)
         {
-            string json = jc.getJson(jc.SendDocAstrandInfo(info, machineName));
+            string json = jc.getJson(jc.SendDocAstrandInfo(info, machineName, value));
             ConnectionUtils.SendMessage(this.DoctorStream, json);
         }
 
+        public void SendTimeDoctor(string time, string name)
+        {
+            dynamic json = jc.getJson(jc.SendTime(time, name));
+            ConnectionUtils.SendMessage(this.DoctorStream, json);
+        }
+
+        public void SendTimeBike(string time, string name)
+        {
+            dynamic json = jc.getJson(jc.SendTime(time, name));
+            ConnectionUtils.SendMessage(this.BikeStream, json);
+        }
 
         public void WriteSessionToFile(AstrandSession session)
         {
@@ -69,6 +80,11 @@ namespace Server.Exercise
                 Console.WriteLine();
             }
 
+        }
+
+        public string secondsTommss(int seconds)
+        {
+            return ((seconds - seconds % 60) / 60).ToString("00") + ":" + (seconds % 60).ToString("00");
         }
     }
 }

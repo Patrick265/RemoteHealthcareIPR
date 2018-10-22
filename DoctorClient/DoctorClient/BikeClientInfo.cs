@@ -82,7 +82,7 @@ namespace DoctorClient
                         {
                             if (aa.infoScreen != null)
                             {
-                                aa.infoScreen.Text = bikeData.data.time;
+                                //aa.infoScreen.Text = bikeData.data.time;
                                 aa.time = bikeData.data.time;
                                 //aa.CheckTime();
                             }

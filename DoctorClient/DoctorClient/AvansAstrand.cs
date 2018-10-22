@@ -30,6 +30,7 @@ namespace DoctorClient
         public AvansAstrand(ClientDoctor clientDoc, string name, Patient p, BikeClientInfo bikeInfo)
         {
             InitializeComponent();
+
             this.machineName = name;
             this.time = "";
             this.doctor = clientDoc;
@@ -46,15 +47,33 @@ namespace DoctorClient
         }
         
 
-        public void SetInfo(string info, string name)
+        public void SetInfo(string info, string name, int value)
+        {
+            if(name == machineName)
+            {
+                if (value == 1)
+                {
+                    this.Invoke(new MethodInvoker(delegate
+                        {
+                            UpdateLabel.Text = info;
+                        }));
+                }
+                else
+                {
+
+                }
+                
+            }
+        }
+
+        public void SetTime(string time, string name)
         {
             if(name == machineName)
             {
                 this.Invoke(new MethodInvoker(delegate
-                    {
-                        UpdateLabel.Text = info;
-                    }));
-                
+                {
+                    infoScreen.Text = time;
+                }));
             }
         }
 
@@ -76,6 +95,11 @@ namespace DoctorClient
                      
                 }));
             }
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
