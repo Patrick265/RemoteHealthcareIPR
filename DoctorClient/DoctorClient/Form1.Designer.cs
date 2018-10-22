@@ -38,6 +38,7 @@ namespace DoctorClient
             this.Menu = new System.Windows.Forms.TabPage();
             this.ChangeButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GenderCombo = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.distance = new System.Windows.Forms.Label();
@@ -45,13 +46,12 @@ namespace DoctorClient
             this.txtReqDistance = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.GenderLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.GenderLabel = new System.Windows.Forms.Label();
-            this.GenderCombo = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.Menu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -127,6 +127,19 @@ namespace DoctorClient
             this.groupBox1.TabIndex = 99;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Patient";
+            // 
+            // GenderCombo
+            // 
+            this.GenderCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.GenderCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
+            this.GenderCombo.FormattingEnabled = true;
+            this.GenderCombo.Items.AddRange(new object[] {
+            "Man",
+            "Vrouw"});
+            this.GenderCombo.Location = new System.Drawing.Point(168, 213);
+            this.GenderCombo.Name = "GenderCombo";
+            this.GenderCombo.Size = new System.Drawing.Size(135, 28);
+            this.GenderCombo.TabIndex = 99;
             // 
             // dateTimePicker1
             // 
@@ -225,6 +238,19 @@ namespace DoctorClient
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // GenderLabel
+            // 
+            this.GenderLabel.BackColor = System.Drawing.Color.White;
+            this.GenderLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GenderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenderLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
+            this.GenderLabel.Location = new System.Drawing.Point(29, 213);
+            this.GenderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.GenderLabel.Name = "GenderLabel";
+            this.GenderLabel.Size = new System.Drawing.Size(131, 30);
+            this.GenderLabel.TabIndex = 93;
+            this.GenderLabel.Text = "Geslacht";
+            // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.White;
@@ -290,32 +316,6 @@ namespace DoctorClient
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(311, 444);
             this.listBox1.TabIndex = 2;
-            // 
-            // GenderLabel
-            // 
-            this.GenderLabel.BackColor = System.Drawing.Color.White;
-            this.GenderLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GenderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GenderLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
-            this.GenderLabel.Location = new System.Drawing.Point(29, 213);
-            this.GenderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.GenderLabel.Name = "GenderLabel";
-            this.GenderLabel.Size = new System.Drawing.Size(131, 30);
-            this.GenderLabel.TabIndex = 93;
-            this.GenderLabel.Text = "Geslacht";
-            // 
-            // GenderCombo
-            // 
-            this.GenderCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.GenderCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(108)))));
-            this.GenderCombo.FormattingEnabled = true;
-            this.GenderCombo.Items.AddRange(new object[] {
-            "Man",
-            "Vrouw"});
-            this.GenderCombo.Location = new System.Drawing.Point(168, 213);
-            this.GenderCombo.Name = "GenderCombo";
-            this.GenderCombo.Size = new System.Drawing.Size(135, 28);
-            this.GenderCombo.TabIndex = 99;
             // 
             // Form1
             // 

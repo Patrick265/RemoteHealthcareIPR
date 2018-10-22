@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DatesBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.PulseChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.PowerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.RPMChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.PulseC = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.PowerC = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.RPMC = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PulseChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PowerChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RPMChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PulseC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PowerC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RPMC)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -75,15 +75,16 @@
             this.DatesBox.Name = "DatesBox";
             this.DatesBox.Size = new System.Drawing.Size(266, 551);
             this.DatesBox.TabIndex = 0;
+            this.DatesBox.SelectedIndexChanged += new System.EventHandler(this.DatesBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.PulseChart, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.PowerChart, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.RPMChart, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.PulseC, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.PowerC, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.RPMC, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(296, 10);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(10);
@@ -94,62 +95,68 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(650, 551);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // PulseChart
+            // PulseC
             // 
-            chartArea4.Name = "ChartArea1";
-            this.PulseChart.ChartAreas.Add(chartArea4);
-            this.PulseChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PulseChart.Location = new System.Drawing.Point(0, 0);
-            this.PulseChart.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.PulseChart.Name = "PulseChart";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Name = "Series1";
-            this.PulseChart.Series.Add(series4);
-            this.PulseChart.Size = new System.Drawing.Size(320, 270);
-            this.PulseChart.TabIndex = 0;
-            this.PulseChart.Text = "PulseChart";
-            title4.Name = "Hart Frequentie";
-            title4.Text = "Hart Frequentie";
-            this.PulseChart.Titles.Add(title4);
+            chartArea1.Name = "ChartArea1";
+            this.PulseC.ChartAreas.Add(chartArea1);
+            this.PulseC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PulseC.Location = new System.Drawing.Point(0, 0);
+            this.PulseC.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
+            this.PulseC.Name = "PulseC";
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Red;
+            series1.Name = "Hartslag";
+            this.PulseC.Series.Add(series1);
+            this.PulseC.Size = new System.Drawing.Size(320, 270);
+            this.PulseC.TabIndex = 0;
+            this.PulseC.Text = "PulseChart";
+            title1.Name = "Hart Frequentie";
+            title1.Text = "Hart Frequentie";
+            this.PulseC.Titles.Add(title1);
             // 
-            // PowerChart
+            // PowerC
             // 
-            chartArea5.Name = "ChartArea1";
-            this.PowerChart.ChartAreas.Add(chartArea5);
-            this.PowerChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PowerChart.Location = new System.Drawing.Point(330, 0);
-            this.PowerChart.Margin = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.PowerChart.Name = "PowerChart";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Name = "Series1";
-            this.PowerChart.Series.Add(series5);
-            this.PowerChart.Size = new System.Drawing.Size(320, 270);
-            this.PowerChart.TabIndex = 1;
-            this.PowerChart.Text = "PowerChart";
-            title5.Name = "Power";
-            title5.Text = "Power";
-            this.PowerChart.Titles.Add(title5);
+            chartArea2.Name = "ChartArea1";
+            this.PowerC.ChartAreas.Add(chartArea2);
+            this.PowerC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PowerC.Location = new System.Drawing.Point(330, 0);
+            this.PowerC.Margin = new System.Windows.Forms.Padding(5, 0, 0, 5);
+            this.PowerC.Name = "PowerC";
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.DodgerBlue;
+            series2.Name = "PowerChart";
+            this.PowerC.Series.Add(series2);
+            this.PowerC.Size = new System.Drawing.Size(320, 270);
+            this.PowerC.TabIndex = 1;
+            this.PowerC.Text = "PowerChart";
+            title2.Name = "Power";
+            title2.Text = "Power";
+            this.PowerC.Titles.Add(title2);
             // 
-            // RPMChart
+            // RPMC
             // 
-            chartArea6.Name = "ChartArea1";
-            this.RPMChart.ChartAreas.Add(chartArea6);
-            this.RPMChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RPMChart.Location = new System.Drawing.Point(0, 280);
-            this.RPMChart.Margin = new System.Windows.Forms.Padding(0, 5, 5, 0);
-            this.RPMChart.Name = "RPMChart";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Name = "Series1";
-            this.RPMChart.Series.Add(series6);
-            this.RPMChart.Size = new System.Drawing.Size(320, 271);
-            this.RPMChart.TabIndex = 2;
-            this.RPMChart.Text = "RPM Chart";
-            title6.Name = "RPM";
-            title6.Text = "RPM";
-            this.RPMChart.Titles.Add(title6);
+            chartArea3.Name = "ChartArea1";
+            this.RPMC.ChartAreas.Add(chartArea3);
+            this.RPMC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RPMC.Location = new System.Drawing.Point(0, 280);
+            this.RPMC.Margin = new System.Windows.Forms.Padding(0, 5, 5, 0);
+            this.RPMC.Name = "RPMC";
+            series3.BorderWidth = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.Crimson;
+            series3.Name = "RPMChart";
+            this.RPMC.Series.Add(series3);
+            this.RPMC.Size = new System.Drawing.Size(320, 271);
+            this.RPMC.TabIndex = 2;
+            this.RPMC.Text = "RPM Chart";
+            title3.Name = "RPM";
+            title3.Text = "RPM";
+            this.RPMC.Titles.Add(title3);
             // 
             // Form2
             // 
@@ -162,12 +169,13 @@
             this.MaximumSize = new System.Drawing.Size(974, 618);
             this.MinimumSize = new System.Drawing.Size(974, 618);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "`";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PulseChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PowerChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RPMChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PulseC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PowerC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RPMC)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,8 +185,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListBox DatesBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart PulseChart;
-        private System.Windows.Forms.DataVisualization.Charting.Chart PowerChart;
-        private System.Windows.Forms.DataVisualization.Charting.Chart RPMChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart PulseC;
+        private System.Windows.Forms.DataVisualization.Charting.Chart PowerC;
+        private System.Windows.Forms.DataVisualization.Charting.Chart RPMC;
     }
 }

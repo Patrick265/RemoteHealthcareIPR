@@ -175,16 +175,26 @@ namespace Server
 		{
             string patientName = jsonReceive.info.name;
             string filepath = "../../res/AstrandSession.json";
-            string json = File.ReadAllText(filepath);
+            dynamic json = File.ReadAllText(filepath);
             dynamic list = JsonConvert.DeserializeObject(json);
+
+
             List<AstrandSession> Sessions = list.ToObject<List<AstrandSession>>();
             List<AstrandSession> SelectedSession = new List<AstrandSession>();
+
+            Console.WriteLine("LIST");
             foreach (AstrandSession session in Sessions)
             {
+                Console.WriteLine(session.ToString());
                 if(session.name == patientName)
                 {
                     SelectedSession.Add(session);
                 }
+            }
+            Console.WriteLine("SELECTED LIST");
+            foreach (AstrandSession ses in SelectedSession)
+            {
+                Console.WriteLine(ses.ToString());
             }
             string js = JsonConvert.SerializeObject(SelectedSession);
             ConnectionUtils.SendMessage(this.Stream, this.jsonConnector.getJson(this.jsonConnector.sendHistoryData(js)));

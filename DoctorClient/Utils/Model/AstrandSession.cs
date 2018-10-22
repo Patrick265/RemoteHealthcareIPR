@@ -6,7 +6,7 @@ namespace Utils.Model
 {
     public class AstrandSession
     {
-        public DateTime date { get; }
+        public DateTime date { get; set; }
         public List<AstrandData> data { get; set; }
         public string name;
 

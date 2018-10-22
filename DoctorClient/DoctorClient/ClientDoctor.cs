@@ -32,6 +32,7 @@ namespace DoctorClient
         private Label errorLabel;
         private LoginForm login;
         private Form1 form;
+        public List<AstrandSession> AstrandSessions { get; set; }
         public List<string> machineNames;
         private List<Patient> patientNames;
         public Patient patient { get; set; }
@@ -51,6 +52,7 @@ namespace DoctorClient
             Thread thread = new Thread(new ThreadStart(MethodThread));
             thread.Start();
             Console.WriteLine("Send json");
+            this.AstrandSessions = new List<AstrandSession>();
             if (errorLabel == null)
             {
                 errorLabel = login.errorLabel;
@@ -395,11 +397,7 @@ namespace DoctorClient
 
         public void SetHistoryData(dynamic jsonReceive)
         {
-            List<AstrandSession> session = JsonConvert.DeserializeObject<List<AstrandSession>>(jsonReceive.json.ToString());
-            foreach (AstrandSession ses in session )
-            {
-                Console.WriteLine(session.ToString());
-            }
+            this.AstrandSessions = JsonConvert.DeserializeObject<List<AstrandSession>>(jsonReceive.json.ToString());
         }
 
 
