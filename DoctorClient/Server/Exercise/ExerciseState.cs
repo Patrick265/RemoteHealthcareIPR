@@ -27,9 +27,9 @@ namespace Server.Exercise
 
         public ExerciseState(NetworkStream bikeStream, NetworkStream doctorStream, Patient patient, string MachineName)
         {
-            this.DurationWarmUp = 15000;
-            this.DurationTrainingSession = 60000;
-            this.DurationCooldown = 15000;
+            this.DurationWarmUp = 120000;
+            this.DurationTrainingSession = 240000;
+            this.DurationCooldown = 60000;
             this.ExerciseConnection = new ExerciseConnection(bikeStream, doctorStream);
             this.MachineName = MachineName;
             this.Patient = patient;

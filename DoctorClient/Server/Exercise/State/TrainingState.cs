@@ -61,7 +61,7 @@ namespace Server.Exercise.State
             this.Timer.Stop();
             this.BuildToTargetTimer.Stop();
             //Check if the steady state is reached if yes it goes to the else, otherwise the training state will take 2 min longer.
-            if (false && RetrySteadyState)
+            if (CheckValues() && RetrySteadyState)
             {
                 Console.WriteLine("AVERAGE IS TOO LOW");
                 this.PulseMinute = new List<int>();
@@ -74,11 +74,11 @@ namespace Server.Exercise.State
                 this.PulseTimer.Enabled = true;
 
                 this.RetrySteadyState = false;
-                base.ExerciseConnection.SendChangeTime("0200", base.MachineName);
+                base.ExerciseConnection.SendChangeTime("0400", base.MachineName);
                 base.ExerciseConnection.SendInfoDoctor("De steady state is niet gehaald, de training gaat door met een extra 2 minuten!", base.MachineName);
                 base.ExerciseConnection.SendInfoBike("De steady state is niet gehaald, de training gaat door met een extra 2 minuten");
             }
-            else if (false)
+            else if (CheckValues())
             {
                 base.ExerciseConnection.WriteSessionToFile(this.Session);
                 base.ExerciseConnection.SendInfoDoctor($"Er kan geen Vo2Max berekend worden, het verschil tussen de hartslag was te groot. Max hartslag: {this.PulseSecond.Min()} Min hartslag {this.PulseSecond.Max()}", base.MachineName);
@@ -92,7 +92,7 @@ namespace Server.Exercise.State
                 base.ExerciseConnection.WriteSessionToFile(this.Session);
                 Console.WriteLine("MINUTE: " + this.PulseMinute.Count);
                 Console.WriteLine("SECOND: " + this.PulseSecond.Count);
-                Console.WriteLine(CalculateVO2Max(130));
+                Console.WriteLine(CalculateVO2Max(PulseSecond.Average()));
                 this.Context.State = new CoolDownState(base.ExerciseConnection.BikeStream, base.ExerciseConnection.DoctorStream, base.Patient, base.MachineName);
                 this.Context.Request();
                 Console.WriteLine(DateTime.Now + " Changed To Cooldown");
@@ -144,9 +144,9 @@ namespace Server.Exercise.State
             int average = Convert.ToInt32(this.PulseSecond.Average());
             Console.WriteLine("AVERAGE" + average);
             Console.WriteLine("MIN: " + min + " - MAX: " + max);
-            if ((max - min) <= 5)
+            if ((max - min) <= 10)
             {
-                if (average < 90)
+                if (average < 130)
                 {
                     Console.WriteLine("IT'S TRUE");
                     return true;

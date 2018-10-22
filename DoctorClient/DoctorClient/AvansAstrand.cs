@@ -67,7 +67,7 @@ namespace DoctorClient
                     this.Chart.Series["Hartslag"].Points.Add(Convert.ToDouble(this.doctor.bikeInfoData.data.pulse.ToString()));
                     this.HeartBeatLabel.Text = "Heartbeat: " + this.doctor.bikeInfoData.data.pulse.ToString() + " BPM";
 
-                    double rpm= Convert.ToDouble(this.doctor.bikeInfoData.data.RPM.ToString()) / 10;
+                    double rpm= Convert.ToDouble(this.doctor.bikeInfoData.data.RPM.ToString());
                     this.Chart.Series["RPM"].Points.Add(rpm);
                     this.RPMLabel.Text = "RPM: " + rpm;
 

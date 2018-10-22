@@ -12,6 +12,7 @@ using System.Globalization;
 using Utils;
 using System.Numerics;
 using Server.Exercise;
+using Server.Exercise.State;
 
 namespace Server
 {
@@ -285,9 +286,13 @@ namespace Server
                 string time = jsonRecieve.data.time;
                 int pulse = jsonRecieve.data.pulse;
                 int rpm = jsonRecieve.data.RPM;
-                Server.exercise.State.Pulse = pulse;
-                Server.exercise.State.Rpm = rpm / 10;
-                Server.exercise.State.CheckRPM();
+                Server.exercise.State.Pulse = jsonRecieve.data.pulse;
+                Console.WriteLine("RPM" + rpm);
+                Server.exercise.State.Rpm = rpm;
+                if (Server.exercise.State is TrainingState)
+                {
+                    Server.exercise.State.CheckRPM();
+                }
             }
 			string doctorId = "doctor";
 			string json = JsonConvert.SerializeObject(jsonRecieve);

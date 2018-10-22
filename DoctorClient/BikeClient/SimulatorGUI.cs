@@ -94,10 +94,12 @@ namespace BikeClient
                 {
                     if (bicycle != null) bicycle.Disconnect();
                     bicycle = new Simulator(300);
+                    
                 }
 
                 bicycle.ResetDevice();
                 bicycle.RequestCommandMode();
+                bicycle.RequestTime("0705");
             }
             catch (Exception e)
             {

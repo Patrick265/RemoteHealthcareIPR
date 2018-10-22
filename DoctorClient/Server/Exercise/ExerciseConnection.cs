@@ -59,10 +59,7 @@ namespace Server.Exercise
                 Console.WriteLine("ASTRAND OPSLAG" + "json");
                 dynamic list = JsonConvert.DeserializeObject(json);
                 Console.WriteLine("de dynamic: " + list);
-
                 List<AstrandSession> oldSessions = list.ToObject<List<AstrandSession>>();
-                //oList(List<AstrandSession>);
-                //JsonConvert.DeserializeObject<List<AstrandSession>>(json);
                 oldSessions.Add(session);
                 File.WriteAllText("../../res/AstrandSession.json", JsonConvert.SerializeObject(oldSessions.ToArray()));
             }
