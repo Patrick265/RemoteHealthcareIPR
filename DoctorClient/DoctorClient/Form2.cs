@@ -42,12 +42,20 @@ namespace DoctorClient
             {
                 this.DatesBox.SelectedItem = this.DateList[0];
             }
-            
+
+            PatientNameLabel.Text = this.Patient.name;
+            WeightLabel.Text = this.Patient.weight.ToString();
+            HeightLabel.Text = this.Patient.height.ToString();
+            AgeLabel.Text = this.Patient.age.ToString();
+            Vo2Label.Text = this.AstrandSessions[0].VO2.ToString();
+
+
         }
 
         private void DatesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<AstrandData> data = new List<AstrandData>();
+            double VO2 = 0;
             this.PulseChart.Series["Hartslag"].Points.Clear();
             this.RpmChart.Series["RPMChart"].Points.Clear();
             this.PowerChart.Series["PowerChart"].Points.Clear();
@@ -56,6 +64,7 @@ namespace DoctorClient
                 if(session.date.ToString() == DatesBox.SelectedItem.ToString())
                 {
                     data = session.data;
+                    VO2 = session.VO2;
                 }
             }
 
@@ -65,6 +74,7 @@ namespace DoctorClient
                 this.RpmChart.Series["RPMChart"].Points.Add(Adata.Rpm);
                 this.PowerChart.Series["PowerChart"].Points.Add(Adata.Power);
             }
+            Vo2Label.Text = VO2.ToString();
         }
 
         public void FillListBox()

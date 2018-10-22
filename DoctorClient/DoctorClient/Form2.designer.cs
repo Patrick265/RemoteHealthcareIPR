@@ -43,11 +43,23 @@
             this.PulseC = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.PowerC = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.RPMC = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PatientNameLabel = new System.Windows.Forms.Label();
+            this.WeightLabel = new System.Windows.Forms.Label();
+            this.HeightLabel = new System.Windows.Forms.Label();
+            this.AgeLabel = new System.Windows.Forms.Label();
+            this.Vo2Label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PulseC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PowerC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RPMC)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -85,6 +97,7 @@
             this.tableLayoutPanel2.Controls.Add(this.PulseC, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.PowerC, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.RPMC, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(296, 10);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(10);
@@ -158,6 +171,139 @@
             title3.Text = "RPM";
             this.RPMC.Titles.Add(title3);
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.label4, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.label5, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.PatientNameLabel, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.WeightLabel, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.HeightLabel, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.AgeLabel, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.Vo2Label, 1, 4);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(328, 278);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 6;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(319, 270);
+            this.tableLayoutPanel3.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(153, 35);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Patientnaam:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(153, 35);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Gewicht:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 70);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 35);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Hoogte:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 105);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(153, 35);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Leeftijd:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(3, 140);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(153, 35);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Vo2:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PatientNameLabel
+            // 
+            this.PatientNameLabel.AutoSize = true;
+            this.PatientNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PatientNameLabel.Location = new System.Drawing.Point(162, 0);
+            this.PatientNameLabel.Name = "PatientNameLabel";
+            this.PatientNameLabel.Size = new System.Drawing.Size(154, 35);
+            this.PatientNameLabel.TabIndex = 5;
+            this.PatientNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // WeightLabel
+            // 
+            this.WeightLabel.AutoSize = true;
+            this.WeightLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WeightLabel.Location = new System.Drawing.Point(162, 35);
+            this.WeightLabel.Name = "WeightLabel";
+            this.WeightLabel.Size = new System.Drawing.Size(154, 35);
+            this.WeightLabel.TabIndex = 6;
+            this.WeightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // HeightLabel
+            // 
+            this.HeightLabel.AutoSize = true;
+            this.HeightLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HeightLabel.Location = new System.Drawing.Point(162, 70);
+            this.HeightLabel.Name = "HeightLabel";
+            this.HeightLabel.Size = new System.Drawing.Size(154, 35);
+            this.HeightLabel.TabIndex = 7;
+            this.HeightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // AgeLabel
+            // 
+            this.AgeLabel.AutoSize = true;
+            this.AgeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AgeLabel.Location = new System.Drawing.Point(162, 105);
+            this.AgeLabel.Name = "AgeLabel";
+            this.AgeLabel.Size = new System.Drawing.Size(154, 35);
+            this.AgeLabel.TabIndex = 8;
+            this.AgeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Vo2Label
+            // 
+            this.Vo2Label.AutoSize = true;
+            this.Vo2Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Vo2Label.Location = new System.Drawing.Point(162, 140);
+            this.Vo2Label.Name = "Vo2Label";
+            this.Vo2Label.Size = new System.Drawing.Size(154, 35);
+            this.Vo2Label.TabIndex = 9;
+            this.Vo2Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -176,6 +322,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PulseC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PowerC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RPMC)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -188,5 +336,16 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart PulseC;
         private System.Windows.Forms.DataVisualization.Charting.Chart PowerC;
         private System.Windows.Forms.DataVisualization.Charting.Chart RPMC;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label PatientNameLabel;
+        private System.Windows.Forms.Label WeightLabel;
+        private System.Windows.Forms.Label HeightLabel;
+        private System.Windows.Forms.Label AgeLabel;
+        private System.Windows.Forms.Label Vo2Label;
     }
 }

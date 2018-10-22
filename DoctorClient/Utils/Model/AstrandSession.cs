@@ -8,13 +8,15 @@ namespace Utils.Model
     {
         public DateTime date { get; set; }
         public List<AstrandData> data { get; set; }
-        public string name;
+        public string name { get; set; }
+        public double VO2 { get; set; }
 
-        public AstrandSession(string name, DateTime date, List<AstrandData> data)
+        public AstrandSession(string name, DateTime date, List<AstrandData> data, double VO2)
         {
             this.name = name;
             this.date = date;
             this.data = data;
+            this.VO2 = VO2;
         }
 
         public AstrandSession(string name, DateTime date)

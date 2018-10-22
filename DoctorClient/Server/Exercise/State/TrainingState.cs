@@ -89,10 +89,12 @@ namespace Server.Exercise.State
             }
             else
             {
+                this.Session.VO2 = CalculateVO2Max(PulseSecond.Average());
                 base.ExerciseConnection.WriteSessionToFile(this.Session);
                 Console.WriteLine("MINUTE: " + this.PulseMinute.Count);
                 Console.WriteLine("SECOND: " + this.PulseSecond.Count);
                 Console.WriteLine(CalculateVO2Max(PulseSecond.Average()));
+                
                 this.Context.State = new CoolDownState(base.ExerciseConnection.BikeStream, base.ExerciseConnection.DoctorStream, base.Patient, base.MachineName);
                 this.Context.Request();
                 Console.WriteLine(DateTime.Now + " Changed To Cooldown");
