@@ -173,24 +173,22 @@ namespace Server
 
 		public void SendHistory(dynamic jsonReceive)
 		{
-			string name = jsonReceive.info.name;
-			string date = jsonReceive.info.date;
-			string fileName = date + "-" + name + ".json";
-			string[] files = Directory.GetFiles("../../res/trainingsessions/", "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".json")).Select(Path.GetFileName).ToArray();
-			Patient info = JsonConvert.DeserializeObject<Patient>(jsonReceive.info.ToString());
-			foreach (string file in files)
-			{
-				if (fileName == file)
-				{
-					string json = File.ReadAllText("../../res/trainingsessions/" + fileName.ToString());
-
-                    //Patient patient = JsonConvert.SerializeObject(json);
-
-                    string send = JsonConvert.SerializeObject(jsonConnector.sendHistoryData(json));
-                    ConnectionUtils.SendMessage(this.Stream, send);
-				}
-			}
-		}
+            string patientName = jsonReceive.info.name;
+            string filepath = "../../res/AstrandSession.json";
+            string json = File.ReadAllText(filepath);
+            dynamic list = JsonConvert.DeserializeObject(json);
+            List<AstrandSession> Sessions = list.ToObject<List<AstrandSession>>();
+            List<AstrandSession> SelectedSession = new List<AstrandSession>();
+            foreach (AstrandSession session in Sessions)
+            {
+                if(session.name == patientName)
+                {
+                    SelectedSession.Add(session);
+                }
+            }
+            string js = JsonConvert.SerializeObject(SelectedSession);
+            ConnectionUtils.SendMessage(this.Stream, this.jsonConnector.getJson(this.jsonConnector.sendHistoryData(js)));
+        }
 
 
 

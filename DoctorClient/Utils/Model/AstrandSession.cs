@@ -28,5 +28,10 @@ namespace Utils.Model
         {
 
         }
+
+        public override string ToString()
+        {
+            return $"[AstrandSession:\nDate:\t{this.date}\nData:\t{this.data}\nName:\t{this.name}]";
+        }
     }
 }

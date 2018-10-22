@@ -56,9 +56,7 @@ namespace Server.Exercise
             if(new FileInfo("../../res/AstrandSession.json").Length != 0)
             {
                 string json = File.ReadAllText("../../res/AstrandSession.json");
-                Console.WriteLine("ASTRAND OPSLAG" + "json");
                 dynamic list = JsonConvert.DeserializeObject(json);
-                Console.WriteLine("de dynamic: " + list);
                 List<AstrandSession> oldSessions = list.ToObject<List<AstrandSession>>();
                 oldSessions.Add(session);
                 File.WriteAllText("../../res/AstrandSession.json", JsonConvert.SerializeObject(oldSessions.ToArray()));

@@ -138,7 +138,7 @@ namespace DoctorClient
                         Console.WriteLine("PATIENTS: " + jsonReceive);
                         this.patientNames = GetPatientNames(jsonReceive);
                         this.patientNames.Concat(patientNames);
-                        foreach(Patient patient in this.patientNames)
+                        foreach (Patient patient in this.patientNames)
                         {
                             Console.WriteLine(patient.age.ToString());
                         }
@@ -158,7 +158,8 @@ namespace DoctorClient
                         if (form != null)
                         {
                             Console.WriteLine("updated");
-                            form.Invoke((MethodInvoker)delegate () {
+                            form.Invoke((MethodInvoker)delegate ()
+                            {
                                 form.UpdateForm(machineNames, patientNames);
                                 Console.WriteLine("BIKENAMES: " + machineNames.Count);
                             });
@@ -174,6 +175,7 @@ namespace DoctorClient
                         //Console.WriteLine(bikeInfoData.data);
                         break;
                     case "HistoryData":
+                        Console.WriteLine("RECEIVED HISTORY: " + jsonReceive);
                         SetHistoryData(jsonReceive);
                         break;
                     case "Astrand":
@@ -188,7 +190,8 @@ namespace DoctorClient
 
         public void Update()
         {
-            form.Invoke((MethodInvoker)delegate () {
+            form.Invoke((MethodInvoker)delegate ()
+            {
                 form.UpdateForm(machineNames, patientNames);
                 Console.WriteLine("BIKENAMES: " + machineNames.Count);
             });
@@ -216,7 +219,8 @@ namespace DoctorClient
         {
             while (form == null) { }
             Thread.Sleep(200);
-            form.Invoke((MethodInvoker)delegate () {
+            form.Invoke((MethodInvoker)delegate ()
+            {
                 form.UpdateForm(machineNames, patientNames);
             });
         }
@@ -391,9 +395,11 @@ namespace DoctorClient
 
         public void SetHistoryData(dynamic jsonReceive)
         {
-            string json = jsonReceive.json;
-            patient = JsonConvert.DeserializeObject<Patient>(json);
-            form.bc.patient = patient;
+            List<AstrandSession> session = JsonConvert.DeserializeObject<List<AstrandSession>>(jsonReceive.json.ToString());
+            foreach (AstrandSession ses in session )
+            {
+                Console.WriteLine(session.ToString());
+            }
         }
 
 
