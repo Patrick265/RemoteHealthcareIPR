@@ -295,7 +295,7 @@ namespace Server
                 int pulse = jsonRecieve.data.pulse;
                 int rpm = jsonRecieve.data.RPM;
                 Server.exercise.State.Pulse = jsonRecieve.data.pulse;
-                Console.WriteLine("RPM" + rpm);
+                //Console.WriteLine("RPM" + rpm);
                 Server.exercise.State.Rpm = rpm;
                 if (Server.exercise.State is TrainingState)
                 {

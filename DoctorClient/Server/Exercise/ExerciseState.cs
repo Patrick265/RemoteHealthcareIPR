@@ -15,6 +15,7 @@ namespace Server.Exercise
         public int Pulse { get; set; }
         public int Power { get; set; }
         public bool AllowData { get; set; }
+        public int LastRpm;
         #endregion
 
         #region Duration Sessions
@@ -34,6 +35,7 @@ namespace Server.Exercise
             this.MachineName = MachineName;
             this.Patient = patient;
             this.AllowData = true;
+            this.LastRpm = Rpm;
         }
 
         public abstract void Event(Context context);
@@ -58,21 +60,32 @@ namespace Server.Exercise
 
         public void CheckRPM()
         {
-            Console.WriteLine("RPM: " + this.Rpm);
+            //Console.WriteLine("RPM: " + this.Rpm);
             if (this.Rpm < 50)
             {
-                this.ExerciseConnection.SendInfoBike("U fietst niet hard genoeg, probeer" + Environment.NewLine + "rond de 60 rpm te blijven", 2);
-                this.ExerciseConnection.SendInfoDoctor("De patient fietst te zacht en heeft een waarschuwing gekregen", this.MachineName, 2);
+                if (this.LastRpm > 50)
+                {
+                    this.ExerciseConnection.SendInfoBike("U fietst niet hard genoeg, probeer" + Environment.NewLine + "rond de 60 rpm te blijven", 2);
+                    this.ExerciseConnection.SendInfoDoctor("De patient fietst te zacht en heeft een waarschuwing gekregen", this.MachineName, 2);
+                    
+                }
             }
             else if (this.Rpm > 70)
             {
-                this.ExerciseConnection.SendInfoBike("U fietst te snel, probeer rond de" + Environment.NewLine + "60 rpm te blijven", 2);
-                this.ExerciseConnection.SendInfoDoctor("De patient fietst te hard en heeft een waarschuwing gekregen", this.MachineName, 2);
+                if (this.LastRpm < 70)
+                {
+                    this.ExerciseConnection.SendInfoBike("U fietst te snel, probeer rond de" + Environment.NewLine + "60 rpm te blijven", 2);
+                    this.ExerciseConnection.SendInfoDoctor("De patient fietst te hard en heeft een waarschuwing gekregen", this.MachineName, 2);
+                    Console.WriteLine("MESSAGE SEND");
+                }
             }
             else
             {
-                this.ExerciseConnection.SendInfoBike("", 2);
-                this.ExerciseConnection.SendInfoDoctor("", this.MachineName, 2);
+                if (this.LastRpm < 50 || this.LastRpm > 70)
+                {
+                    this.ExerciseConnection.SendInfoBike("", 2);
+                    this.ExerciseConnection.SendInfoDoctor("", this.MachineName, 2);
+                }
             }
         }
     }

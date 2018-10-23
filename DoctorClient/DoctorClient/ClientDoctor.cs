@@ -193,6 +193,18 @@ namespace DoctorClient
                         string TName = jsonReceive.name;
                         AvansAstrand.SetTime(time, TName);
                         break;
+                    case "VO2":
+                        string VName = jsonReceive.name;
+                        double Vo2 = jsonReceive.VO2;
+                        if (AvansAstrand.machineName == VName)
+                        {
+                            AvansAstrand.Invoke(new MethodInvoker(delegate
+                            {
+                                AvansAstrand.Vo2.Text = Vo2.ToString();
+                            }));
+                            
+                        }
+                        break;
                 }
             }
         }

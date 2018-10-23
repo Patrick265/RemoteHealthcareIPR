@@ -8,8 +8,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Server.Exercise.State
-{
-    public class TrainingState : ExerciseState
+
+{ public class TrainingState : ExerciseState
     {
         private Context Context;
         private Timer Timer;
@@ -100,7 +100,8 @@ namespace Server.Exercise.State
                 Console.WriteLine(DateTime.Now + " Changed To Cooldown");
             }
             else
-            {
+        { 
+                ExerciseConnection.SendVo2(CalculateVO2Max(PulseSecond.Average()), MachineName);
                 this.Session.VO2 = CalculateVO2Max(PulseSecond.Average());
                 base.ExerciseConnection.WriteSessionToFile(this.Session);
                 Console.WriteLine("MINUTE: " + this.PulseMinute.Count);
@@ -160,7 +161,7 @@ namespace Server.Exercise.State
             Console.WriteLine("MIN: " + min + " - MAX: " + max);
             if ((max - min) <= 10)
             {
-                if (average < 130)
+                if (average < 90)
                 {
                     Console.WriteLine("IT'S TRUE");
                     return true;

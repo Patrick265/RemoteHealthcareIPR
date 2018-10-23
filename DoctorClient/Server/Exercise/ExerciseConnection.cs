@@ -62,6 +62,12 @@ namespace Server.Exercise
             ConnectionUtils.SendMessage(this.BikeStream, json);
         }
 
+        public void SendVo2(double Vo2, string name)
+        {
+            dynamic json = jc.getJson(jc.Vo2(Vo2, name));
+            ConnectionUtils.SendMessage(this.DoctorStream, json);
+        }
+
         public void WriteSessionToFile(AstrandSession session)
         {
             if(new FileInfo("../../res/AstrandSession.json").Length != 0)

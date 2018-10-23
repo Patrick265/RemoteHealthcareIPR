@@ -20,17 +20,18 @@ namespace DoctorClient
         public Label UpdateText;
         public Label HeartBeatLabel;
         public Label PowerLabel;
+        public Label Vo2;
         public Chart Chart;
         private ClientDoctor doctor;
         public string time;
         private bool hasBeen0;
-        private string machineName;
+        public string machineName;
 
 
         public AvansAstrand(ClientDoctor clientDoc, string name, Patient p, BikeClientInfo bikeInfo)
         {
             InitializeComponent();
-
+            this.Vo2 = VO2Max;
             this.machineName = name;
             this.time = "";
             this.doctor = clientDoc;

@@ -649,4 +649,13 @@ public class JsonConnector
         timeS.name = machineName;
         return timeS;
     }
+
+    public dynamic Vo2(double Vo2V, string machineName)
+    {
+        dynamic vo2 = new JObject();
+        vo2.id = "VO2";
+        vo2.name = machineName;
+        vo2.VO2 = Vo2V;
+        return vo2;
+    }
 }
