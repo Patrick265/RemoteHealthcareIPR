@@ -84,6 +84,9 @@ namespace Server.Exercise.State
                 this.RetrySteadyState = false;
                 base.ExerciseConnection.SendChangeTime("0400", base.MachineName);
                 this.Time = 120;
+                this.TimerInfo.Start();
+                this.Timer.Start();
+                this.PulseTimer.Start();
                 base.ExerciseConnection.SendInfoDoctor("De steady state is niet gehaald, de training gaat door met een extra 2 minuten!", base.MachineName, 1);
                 base.ExerciseConnection.SendInfoBike("De steady state is niet gehaald, de training gaat door met een extra 2 minuten", 1);
             }

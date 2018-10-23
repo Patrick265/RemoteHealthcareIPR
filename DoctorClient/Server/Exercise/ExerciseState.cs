@@ -58,7 +58,7 @@ namespace Server.Exercise
 
         public void CheckRPM()
         {
-            //Console.WriteLine("CHECKING THE GODDAMN RPM!!!!!");
+            Console.WriteLine("RPM: " + this.Rpm);
             if (this.Rpm < 50)
             {
                 this.ExerciseConnection.SendInfoBike("U fietst niet hard genoeg, probeer" + Environment.NewLine + "rond de 60 rpm te blijven", 2);
