@@ -92,7 +92,7 @@ namespace DoctorClient
             }
             catch
             {
-                MessageBox.Show("Dokter has disconnected" );
+                //MessageBox.Show("Dokter has disconnected" );
             }
         }
 

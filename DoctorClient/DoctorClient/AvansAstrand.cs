@@ -45,11 +45,11 @@ namespace DoctorClient
             this.hasBeen0 = false;
             this.doctor.AvansAstrand = this;
         }
-        
+
 
         public void SetInfo(string info, string name, int value)
         {
-            if(name == machineName)
+            if (name == machineName)
             {
                 if (value == 1)
                 {
@@ -65,18 +65,25 @@ namespace DoctorClient
                         labelWarning.Text = info;
                     }));
                 }
-                
+
             }
         }
 
         public void SetTime(string time, string name)
         {
-            if(name == machineName)
+            if (name == machineName)
             {
-                this.Invoke(new MethodInvoker(delegate
+                if (infoScreen != null)
                 {
-                    infoScreen.Text = time;
-                }));
+                    if(IsHandleCreated)
+                    {
+                        this.Invoke(new MethodInvoker(delegate
+                        {
+                            infoScreen.Text = time;
+                        }));
+                    }
+                    
+                }
             }
         }
 
@@ -84,19 +91,23 @@ namespace DoctorClient
         {
             if (this.Chart != null)
             {
-                this.Invoke(new MethodInvoker(delegate
+                if(IsHandleCreated)
                 {
-                    this.Chart.Series["Hartslag"].Points.Add(Convert.ToDouble(this.doctor.bikeInfoData.data.pulse.ToString()));
-                    this.HeartBeatLabel.Text = "Heartbeat: " + this.doctor.bikeInfoData.data.pulse.ToString() + " BPM";
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        this.Chart.Series["Hartslag"].Points.Add(Convert.ToDouble(this.doctor.bikeInfoData.data.pulse.ToString()));
+                        this.HeartBeatLabel.Text = "Heartbeat: " + this.doctor.bikeInfoData.data.pulse.ToString() + " BPM";
 
-                    double rpm= Convert.ToDouble(this.doctor.bikeInfoData.data.RPM.ToString());
-                    this.Chart.Series["RPM"].Points.Add(rpm);
-                    this.RPMLabel.Text = "RPM: " + rpm;
+                        double rpm = Convert.ToDouble(this.doctor.bikeInfoData.data.RPM.ToString());
+                        this.Chart.Series["RPM"].Points.Add(rpm);
+                        this.RPMLabel.Text = "RPM: " + rpm;
 
-                    this.Chart.Series["Weerstand"].Points.Add(Convert.ToDouble(this.doctor.bikeInfoData.data.power.ToString()));
-                    this.PowerLabel.Text = "Weerstand:  " + this.doctor.bikeInfoData.data.power.ToString() + "  W";
-                     
-                }));
+                        this.Chart.Series["Weerstand"].Points.Add(Convert.ToDouble(this.doctor.bikeInfoData.data.power.ToString()));
+                        this.PowerLabel.Text = "Weerstand:  " + this.doctor.bikeInfoData.data.power.ToString() + "  W";
+
+                    }));
+                }
+                
             }
         }
 
