@@ -293,7 +293,7 @@ namespace Server
             {
                 string time = jsonRecieve.data.time;
                 int pulse = jsonRecieve.data.pulse;
-                int rpm = jsonRecieve.data.RPM/100;
+                int rpm = jsonRecieve.data.RPM;
                 Server.exercise.State.Pulse = jsonRecieve.data.pulse;
                 Console.WriteLine("RPM" + rpm);
                 Server.exercise.State.Rpm = rpm;
