@@ -47,7 +47,11 @@ namespace DoctorClient
             WeightLabel.Text = this.Patient.weight.ToString();
             HeightLabel.Text = this.Patient.height.ToString();
             AgeLabel.Text = this.Patient.age.ToString();
-            Vo2Label.Text = this.AstrandSessions[0].VO2.ToString();
+            if(this.AstrandSessions.Count > 0)
+            {
+                Vo2Label.Text = this.AstrandSessions[0].VO2.ToString();
+            }
+            
 
 
         }
